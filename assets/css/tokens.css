@@ -1,0 +1,91 @@
+/* ==========================================================================
+   Design tokens
+   Every color, size and radius used by the site lives here.
+   Light theme is the default; [data-theme="dark"] overrides the colors.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* Colors */
+  /* Page background: brushed, metallic black (same in both themes) */
+  --color-page: #0c0c0c;
+  --page-metal:
+    radial-gradient(120% 70% at 15% -10%, rgba(255, 255, 255, 0.10) 0%, transparent 55%),
+    radial-gradient(90% 60% at 100% 110%, rgba(255, 255, 255, 0.06) 0%, transparent 60%),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 5px),
+    linear-gradient(135deg, #070707 0%, #1b1b1b 38%, #0b0b0b 62%, #161616 82%, #080808 100%);
+  --color-on-page-muted: #8c8c8c;
+  --color-panel: #ffffff;         /* inner pages' main panel */
+  --color-tile: #d4d4d4;          /* bento tile base */
+  --color-tile-shine: #e6e6e6;    /* bento tile highlight */
+  --color-tile-strong: #5f5f5f;   /* the dark accent tile */
+  --color-card-dark: #2e2e2e;     /* dark cards on inner pages */
+  --color-card-dark-text: #f4f4f4;
+  --color-text: #111111;
+  --color-muted: #5c5c5c;
+  --color-line: #dedede;
+  --color-control: #c6c6c6;       /* round arrow buttons */
+  --color-control-hover: #b4b4b4;
+  --color-focus: #2563eb;
+  --color-available: #4ade80;
+  --color-success: #15803d;
+  --color-error: #b91c1c;
+
+  /* Typography */
+  --font-mono: "IBM Plex Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.4rem, 1.1rem + 1vw, 1.9rem);
+  --text-display: clamp(1.6rem, 1rem + 2vw, 2.6rem);
+  --tracking-wide: 0.04em;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+
+  /* Layout */
+  --container: 1240px;
+  --gutter: 8px;                  /* gap between bento tiles */
+
+  /* Shape and depth */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 36px;
+  --radius-round: 999px;
+  --shadow-control: inset 0 1px 0 rgba(255, 255, 255, 0.55), 0 2px 6px rgba(0, 0, 0, 0.12);
+
+  /* Motion */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --duration: 0.25s;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-page: #0c0c0c;
+  --color-panel: #161616;
+  --color-tile: #1d1d1d;
+  --color-tile-shine: #2a2a2a;
+  --color-tile-strong: #d9d9d9;
+  --color-card-dark: #242424;
+  --color-card-dark-text: #f4f4f4;
+  --color-text: #ededed;
+  --color-muted: #a1a1a1;
+  --color-line: #2c2c2c;
+  --color-control: #2e2e2e;
+  --color-control-hover: #3a3a3a;
+  --color-focus: #60a5fa;
+  --color-success: #4ade80;
+  --color-error: #f87171;
+  --shadow-control: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 2px 6px rgba(0, 0, 0, 0.4);
+}

@@ -1,0 +1,46 @@
+/* ==========================================================================
+   Project case studies (SafeScribe, BadgerWatch).
+   ========================================================================== */
+
+.case-shots {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-7);
+}
+
+.case-shots.is-single {
+  grid-template-columns: 1fr;
+}
+
+.case-shots figure {
+  margin: 0;
+}
+
+.case-shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+}
+
+.case-shots figcaption {
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.case-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin: var(--space-7) 0;
+}
+
+@media (max-width: 720px) {
+  .case-shots {
+    grid-template-columns: 1fr;
+  }
+}

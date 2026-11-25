@@ -1,0 +1,629 @@
+/*
+  Multi-agent build simulation.
+  Active only while html.sim-live / html.sim-boot is set.
+  Removing those classes restores the original portfolio styles.
+*/
+
+html.sim-boot body > *:not(#agent-sim) {
+  opacity: 0 !important;
+}
+
+html.sim-live .home-footer,
+html.sim-live .sim-unit {
+  transition:
+    color 0.45s ease,
+    background-color 0.45s ease,
+    border-color 0.45s ease,
+    box-shadow 0.45s ease,
+    opacity 0.4s ease,
+    transform 0.55s cubic-bezier(0.16, 0.84, 0.32, 1),
+    padding 0.45s ease,
+    outline-color 0.35s ease;
+}
+
+html.sim-live .sim-raw {
+  color: #8b95a5;
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+  font-family: ui-monospace, "Cascadia Code", "Segoe UI Mono", Consolas, monospace;
+  outline: 1px dashed rgba(100, 116, 139, 0.75);
+  outline-offset: 3px;
+}
+
+html.sim-live .sim-frame {
+  border-color: transparent;
+}
+
+html.sim-live .sim-region {
+  outline: 1px dashed rgba(37, 99, 235, 0.28);
+  outline-offset: 3px;
+  transition: outline-color 0.35s ease;
+}
+
+/* Regions are the bento tiles themselves, so only the outline changes here:
+   the tile keeps its own background. */
+html.sim-live .sim-region.is-active {
+  outline-color: rgba(56, 189, 248, 0.95);
+}
+
+html.sim-live .sim-region.is-built {
+  outline-color: transparent;
+}
+
+html.sim-live .sim-hot {
+  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.55);
+}
+
+html.sim-live .sim-type-host {
+  display: inline-grid;
+  grid-template-columns: auto;
+}
+
+html.sim-live .sim-type-host.sim-type-block {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+html.sim-live .sim-ghost,
+html.sim-live .sim-typed {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+
+html.sim-live .sim-ghost {
+  visibility: hidden;
+}
+
+html.sim-live .is-typing .sim-typed::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.9em;
+  margin-left: 1px;
+  background: currentColor;
+  vertical-align: text-bottom;
+  animation: sim-caret 1s steps(1) infinite;
+}
+
+html.sim-live a {
+  pointer-events: none;
+}
+
+@keyframes sim-caret {
+  50% { opacity: 0; }
+}
+
+#agent-sim {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  pointer-events: none;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #e8edf5;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+#agent-sim .stack {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  width: min(342px, calc(100vw - 28px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: calc(100vh - 28px);
+  pointer-events: none;
+}
+
+html.sim-minimized #agent-sim .stack {
+  display: none;
+}
+
+html.sim-minimized #agent-sim .launcher {
+  display: flex;
+}
+
+#agent-sim .launcher {
+  position: fixed;
+  left: 14px;
+  bottom: 14px;
+  z-index: 3;
+  display: none;
+  min-height: 42px;
+  align-items: center;
+  gap: 9px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 12px;
+  background: rgba(12, 16, 28, 0.94);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(14px);
+  color: #e8edf5;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.2s ease;
+}
+
+#agent-sim .launcher:hover {
+  background: #182237;
+}
+
+#agent-sim .launcher-icon {
+  display: flex;
+  width: 15px;
+  flex-direction: column;
+  gap: 3px;
+}
+
+#agent-sim .launcher-icon i {
+  display: block;
+  width: 14px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: #b8c5da;
+}
+
+#agent-sim .launcher-icon i:nth-child(2) {
+  width: 10px;
+  background: #7dd3fc;
+}
+
+#agent-sim .launcher-status {
+  width: 7px;
+  height: 7px;
+  margin-left: 1px;
+  border-radius: 50%;
+  background: #64748b;
+}
+
+html.sim-running #agent-sim .launcher-status {
+  background: #4ade80;
+  box-shadow: 0 0 8px rgba(74, 222, 128, 0.7);
+  animation: sim-pulse 1.3s ease-in-out infinite;
+}
+
+html.sim-paused #agent-sim .launcher-status {
+  background: #fbbf24;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.55);
+}
+
+html.sim-finished #agent-sim .launcher-status {
+  background: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.55);
+}
+
+#agent-sim .activity,
+#agent-sim .controls {
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
+  background: rgba(12, 16, 28, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 18px 50px rgba(15, 23, 42, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px) saturate(1.25);
+}
+
+#agent-sim .activity {
+  border-radius: 16px;
+  padding: 12px 12px 10px;
+  max-height: min(42vh, 340px);
+  overflow: auto;
+}
+
+#agent-sim .activity::-webkit-scrollbar,
+#agent-sim .log::-webkit-scrollbar {
+  width: 8px;
+}
+
+#agent-sim .activity::-webkit-scrollbar-thumb,
+#agent-sim .log::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 99px;
+}
+
+html.sim-hide-activity #agent-sim .activity {
+  display: none;
+}
+
+#agent-sim .head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+#agent-sim .minimize {
+  flex: 0 0 auto;
+  margin: -4px -5px 0 0;
+  padding: 2px 8px 5px;
+  border: 0;
+  background: transparent;
+  color: #93a0b4;
+  font-size: 20px;
+  line-height: 1;
+}
+
+#agent-sim .minimize:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f8fafc;
+}
+
+#agent-sim .kicker {
+  margin: 0;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7dd3fc;
+}
+
+#agent-sim h2 {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 650;
+  color: #f8fafc;
+}
+
+#agent-sim .stat {
+  text-align: right;
+}
+
+#agent-sim .stat strong {
+  display: block;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  color: #f8fafc;
+}
+
+#agent-sim .stat span,
+#agent-sim .section-now,
+#agent-sim .hint {
+  color: #93a0b4;
+  font-size: 11px;
+}
+
+#agent-sim .section-now {
+  margin: 8px 0 0;
+}
+
+#agent-sim .section-now b {
+  color: #e2e8f0;
+  font-weight: 650;
+}
+
+#agent-sim .bar {
+  margin-top: 8px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+#agent-sim .bar span {
+  display: block;
+  height: 100%;
+  width: 0%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #38bdf8, #c084fc 45%, #2dd4bf 75%, #4ade80);
+  transition: width 0.3s linear;
+}
+
+#agent-sim .agents {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#agent-sim .agent {
+  display: grid;
+  grid-template-columns: 8px minmax(0, 1fr) auto;
+  column-gap: 8px;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+#agent-sim .agent[data-state="Working"],
+#agent-sim .agent[data-state="Analyzing"],
+#agent-sim .agent[data-state="Reviewing"] {
+  background: rgba(255, 255, 255, 0.045);
+}
+
+#agent-sim .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 8px var(--c);
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+
+#agent-sim .agent[data-state="Working"] .dot,
+#agent-sim .agent[data-state="Analyzing"] .dot,
+#agent-sim .agent[data-state="Reviewing"] .dot {
+  animation: sim-pulse 1.3s ease-in-out infinite;
+}
+
+#agent-sim .name {
+  grid-row: 1;
+  grid-column: 2;
+  font-size: 12.5px;
+  font-weight: 650;
+  color: #f1f5f9;
+}
+
+#agent-sim .badge {
+  grid-row: 1;
+  grid-column: 3;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8b98ab;
+}
+
+#agent-sim .badge[data-status="Analyzing"] { color: #7dd3fc; }
+#agent-sim .badge[data-status="Working"] { color: #fbbf24; }
+#agent-sim .badge[data-status="Reviewing"] { color: #4ade80; }
+#agent-sim .badge[data-status="Completed"] { color: #5eead4; }
+
+#agent-sim .job {
+  grid-row: 2;
+  grid-column: 2 / span 2;
+  font-size: 11px;
+  color: #9aa8bd;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#agent-sim .log {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 8px;
+  max-height: 112px;
+  overflow: auto;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.28);
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+#agent-sim .log li {
+  margin: 0 0 4px;
+  color: #d5deea;
+  word-break: break-word;
+}
+
+#agent-sim .log b {
+  font-weight: 700;
+}
+
+#agent-sim .hint {
+  margin: 8px 2px 0;
+}
+
+#agent-sim .controls {
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+#agent-sim .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+#agent-sim .lbl {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #93a0b4;
+  margin-right: 2px;
+}
+
+#agent-sim button {
+  font: inherit;
+  font-size: 12px;
+  color: #e8edf5;
+  background: #1c2433;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 0.38rem 0.7rem;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+#agent-sim button:hover:not(:disabled) {
+  background: #273246;
+}
+
+#agent-sim button:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 2px;
+}
+
+#agent-sim button:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+#agent-sim button.primary {
+  background: #2563eb;
+  border-color: transparent;
+  color: #fff;
+}
+
+#agent-sim button.primary:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+#agent-sim button[aria-pressed="true"] {
+  background: #1e3a5f;
+  border-color: rgba(125, 211, 252, 0.5);
+  color: #e0f2fe;
+}
+
+.cursor,
+.ring,
+.ripple {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cursor {
+  width: 0;
+  height: 0;
+  color: var(--c);
+  will-change: transform;
+}
+
+.cursor svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  filter: drop-shadow(0 0 6px var(--c));
+  transition: transform 0.12s ease;
+}
+
+.cursor.is-clicking svg,
+.cursor.is-down svg {
+  transform: translate(1px, 2px) scale(0.92);
+}
+
+.cursor .tag {
+  position: absolute;
+  left: 18px;
+  top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-width: 190px;
+  padding: 3px 7px 4px;
+  border-radius: 8px;
+  background: rgba(10, 14, 24, 0.94);
+  border: 1px solid color-mix(in srgb, var(--c) 60%, transparent);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.28),
+    0 0 14px color-mix(in srgb, var(--c) 32%, transparent);
+}
+
+.cursor.flip .tag {
+  left: auto;
+  right: 18px;
+}
+
+.cursor .tag b {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--c);
+  white-space: nowrap;
+}
+
+.cursor .tag small {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 10px;
+  color: #d5deea;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cursor .tag small:empty {
+  display: none;
+}
+
+.ring {
+  border: 1.5px solid var(--c);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent),
+    0 0 18px color-mix(in srgb, var(--c) 40%, transparent);
+}
+
+.ripple {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  border-radius: 50%;
+  border: 2px solid currentColor;
+  transform: translate(-50%, -50%) scale(0.35);
+  animation: sim-ripple 0.48s ease-out forwards;
+}
+
+html.sim-hide-cursors .cursor,
+html.sim-hide-cursors .ring,
+html.sim-hide-cursors .ripple {
+  opacity: 0 !important;
+}
+
+@keyframes sim-pulse {
+  50% { transform: scale(0.7); opacity: 0.65; }
+}
+
+@keyframes sim-ripple {
+  to { transform: translate(-50%, -50%) scale(3.4); opacity: 0; }
+}
+
+@media (max-width: 640px) {
+  #agent-sim .stack {
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+  }
+
+  #agent-sim .launcher {
+    left: 10px;
+    bottom: 10px;
+  }
+
+  #agent-sim .activity {
+    max-height: 42vh;
+  }
+
+  #agent-sim button {
+    min-height: 36px;
+  }
+
+  #agent-sim .minimize {
+    min-height: 32px;
+  }
+
+  .cursor .tag b { font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.sim-live .sim-unit,
+  html.sim-live .home-footer,
+  .cursor svg,
+  #agent-sim .dot,
+  #agent-sim .bar span {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  html.sim-live .is-typing .sim-typed::after {
+    animation: none;
+  }
+}

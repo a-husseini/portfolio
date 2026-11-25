@@ -1,0 +1,484 @@
+/* ==========================================================================
+   Home page: the bento grid.
+   Desktop uses a 12-column grid; tablets get 2 columns; phones stack.
+   ========================================================================== */
+
+.home {
+  padding: clamp(12px, 3vw, 48px);
+}
+
+.bento {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows:
+    clamp(96px, 8vw, 116px)
+    clamp(150px, 12.5vw, 190px)
+    clamp(160px, 14vw, 210px)
+    clamp(130px, 10.5vw, 150px)
+    clamp(240px, 19vw, 280px);
+  gap: var(--gutter);
+  max-width: var(--container);
+  margin: 0 auto;
+}
+
+/* ---------- Placement ---------- */
+.tile-intro { grid-column: 1 / 6; grid-row: 1 / 4; }
+.tile-monogram { grid-column: 6 / 10; grid-row: 1 / 4; }
+.tile-hello { grid-column: 6 / 10; grid-row: 4 / 5; }
+.tile-status { grid-column: 10 / 13; grid-row: 1 / 2; }
+.tile-theme { grid-column: 10 / 13; grid-row: 2 / 3; }
+.tile-projects { grid-column: 10 / 13; grid-row: 3 / 4; }
+.tile-about { grid-column: 10 / 13; grid-row: 4 / 5; }
+.tile-featured { grid-column: 1 / 6; grid-row: 4 / 6; }
+.tile-experience { grid-column: 6 / 9; grid-row: 5 / 6; }
+.tile-stack { grid-column: 9 / 13; grid-row: 5 / 6; }
+
+/* ---------- Intro ---------- */
+.tile-intro {
+  justify-content: space-between;
+  gap: var(--space-6);
+}
+
+.intro-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.intro-logo .monogram {
+  width: clamp(48px, 5vw, 64px);
+  height: clamp(48px, 5vw, 64px);
+}
+
+.intro-clock {
+  display: grid;
+  justify-items: end;
+  text-align: right;
+}
+
+.intro-clock-place {
+  font-size: var(--text-sm);
+}
+
+.intro-clock time {
+  font-size: clamp(1.6rem, min(2.4vw, 4.6vh), 2.8rem);
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.intro-headline {
+  margin-top: auto;
+  font-size: clamp(1.2rem, min(1.75vw, 3.4vh), 2.2rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.intro-line {
+  display: block;
+}
+
+.intro-links {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: var(--space-2) var(--space-7);
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.intro-links a {
+  transition: opacity var(--duration) ease;
+}
+
+.intro-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---------- Monogram ---------- */
+.tile-monogram {
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(70% 60% at 50% 40%, var(--color-tile-shine) 0%, transparent 70%),
+    var(--color-tile);
+}
+
+.monogram-large {
+  width: min(58%, 260px);
+  height: auto;
+  color: var(--color-text);
+  opacity: 0.88;
+}
+
+.monogram-caption {
+  position: absolute;
+  left: var(--space-5);
+  bottom: var(--space-4);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ---------- Status ---------- */
+.status-text {
+  margin-top: var(--space-2);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ---------- Theme switch ---------- */
+.tile-theme {
+  justify-content: space-between;
+  color: #f2f2f2;
+  background:
+    radial-gradient(110% 90% at 20% 0%, rgba(255, 255, 255, 0.12) 0%, transparent 60%),
+    var(--color-tile-strong);
+}
+
+/* The tile shows the current mode: a sun in light mode, a moon in dark mode. */
+.theme-icon-dark,
+[data-theme="dark"] .theme-icon-light {
+  display: none;
+}
+
+[data-theme="dark"] .theme-icon-dark {
+  display: block;
+}
+
+.theme-tile-button {
+  display: block;
+  width: fit-content;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+}
+
+.theme-icon {
+  width: 44px;
+  height: 44px;
+  transition: transform 0.5s var(--ease);
+}
+
+.tile-theme:hover .theme-icon {
+  transform: rotate(45deg);
+}
+
+.theme-text {
+  font-size: clamp(0.72rem, min(0.95vw, 1.9vh), var(--text-sm));
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ---------- Featured project ---------- */
+.featured-shots {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-2);
+  grid-template-rows: minmax(0, 1fr);
+  flex: 1 1 0;
+  min-height: 40px;
+  margin-top: clamp(8px, 1.6vh, 16px);
+}
+
+.featured-shots img {
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: left top;
+  border-radius: var(--radius-sm);
+  background: var(--color-tile-shine);
+}
+
+/* ---------- Stack: endless horizontal scroll ----------
+   assets/js/site.js scrolls it automatically; visitors can also drag, swipe or
+   use the mouse wheel. The scrollbar is hidden. */
+.stack-marquee {
+  margin-top: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%);
+}
+
+.stack-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+.stack-marquee.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.stack-list {
+  display: flex;
+  width: max-content;
+  padding: var(--space-2) 0;
+}
+
+/* Spacing lives on the items (not "gap") so the loop joins seamlessly. */
+.stack-list li {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: clamp(52px, min(5vw, 8.5vh), 80px);
+  aspect-ratio: 1;
+  margin-right: var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: clamp(0.95rem, min(1.3vw, 2.2vh), 1.25rem);
+  font-weight: 600;
+  background: var(--color-control);
+  box-shadow: var(--shadow-control);
+}
+
+html.sim-live .stack-list li[aria-hidden] {
+  visibility: hidden;
+}
+
+/* ---------- Footer ---------- */
+.home-footer p {
+  margin: 0 auto;
+}
+
+.home-footer {
+  max-width: var(--container);
+  margin: var(--space-4) auto 0;
+  padding: 0 var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-on-page-muted);
+  text-align: center;
+}
+
+/* ---------- Desktop: the whole bento fits on one screen ---------- */
+@media (min-width: 1001px) {
+  .home {
+    display: flex;
+    flex-direction: column;
+    height: max(100vh, 560px);
+    height: max(100dvh, 560px);
+    /* Same breathing room at the top as before, a little more on the sides. */
+    padding: clamp(10px, 2.2vh, 28px) clamp(16px, 2.6vw, 56px) clamp(6px, 1vh, 12px);
+  }
+
+  .bento {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 1800px;
+    grid-template-rows:
+      minmax(0, 0.8fr) minmax(0, 1.15fr) minmax(0, 1.3fr) minmax(0, 0.95fr) minmax(0, 1.6fr);
+  }
+
+  .tile {
+    padding: clamp(14px, 2.6vh, 24px) clamp(16px, 1.7vw, 24px);
+  }
+
+  .tile-title {
+    margin-top: clamp(6px, 1.4vh, 16px);
+    font-size: clamp(1.05rem, min(1.55vw, 2.9vh), 1.9rem);
+  }
+
+  .status-text {
+    margin-top: clamp(2px, 0.6vh, 8px);
+    font-size: clamp(0.95rem, min(1.3vw, 2.5vh), 1.25rem);
+  }
+
+  .home-footer {
+    flex: none;
+    margin-top: clamp(4px, 1vh, 12px);
+  }
+
+  .intro-links {
+    gap: clamp(2px, 0.8vh, 8px) var(--space-7);
+  }
+
+  .arrow-button {
+    width: clamp(36px, 5.4vh, 48px);
+    height: clamp(36px, 5.4vh, 48px);
+  }
+}
+
+/* The bento is sized to the window, so a stray pixel from browser zoom
+   rounding shouldn't add a scrollbar. Short windows still scroll. */
+@media (min-width: 1001px) and (min-height: 561px) {
+  html:has(body.home) {
+    overflow-y: hidden;
+  }
+}
+
+/* ---------- Tablet: two columns ---------- */
+@media (max-width: 1000px) {
+  .bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(150px, auto);
+  }
+
+  .tile-intro,
+  .tile-monogram,
+  .tile-hello,
+  .tile-status,
+  .tile-theme,
+  .tile-projects,
+  .tile-about,
+  .tile-featured,
+  .tile-experience,
+  .tile-stack {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .tile-intro {
+    grid-column: 1 / -1;
+    min-height: 460px;
+  }
+
+  .tile-monogram {
+    grid-row: span 2;
+  }
+
+  .tile-featured,
+  .tile-stack,
+  .tile-about,
+  .tile-experience {
+    grid-column: 1 / -1;
+  }
+
+  .tile-featured {
+    min-height: 360px;
+  }
+
+  .tile-hello,
+  .tile-projects,
+  .tile-about,
+  .tile-experience {
+    min-height: 170px;
+  }
+}
+
+/* ---------- Phone: one column ---------- */
+@media (max-width: 600px) {
+  .home {
+    padding-bottom: 72px; /* room for the Replay badge */
+  }
+
+  .bento {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tile {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .tile-monogram {
+    grid-row: auto;
+    min-height: 280px;
+  }
+
+  .tile-intro {
+    min-height: 520px;
+  }
+
+  .tile-hello,
+  .tile-projects,
+  .tile-about,
+  .tile-experience {
+    min-height: 150px;
+  }
+
+  .tile-stack {
+    min-height: 230px;
+  }
+
+  .tile-featured {
+    min-height: 0;
+  }
+
+  .featured-shots {
+    margin-top: var(--space-5);
+  }
+
+  .intro-links {
+    gap: var(--space-2) var(--space-6);
+  }
+}
+
+/* ==========================================================================
+   Dark mode: liquid-chrome background, a polished metal frame around the
+   bento, and smoky graphite tiles.
+   ========================================================================== */
+[data-theme="dark"] body.home {
+  background:
+    radial-gradient(28% 40% at 52% -6%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(22% 46% at 96% 46%, rgba(255, 255, 255, 0.32) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(30% 34% at 8% 40%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(36% 30% at 55% 104%, rgba(255, 255, 255, 0.40) 0%, rgba(255, 255, 255, 0) 70%),
+    radial-gradient(20% 26% at 22% 98%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%),
+    conic-gradient(from 210deg at 50% 50%, #050505, #262626 12%, #070707 24%, #303030 38%, #080808 52%, #1f1f1f 66%, #060606 80%, #2a2a2a 92%, #050505);
+  background-attachment: fixed;
+}
+
+[data-theme="dark"] .home .bento {
+  padding: clamp(8px, 1.3vh, 14px);
+  border-radius: calc(var(--radius-lg) + clamp(8px, 1.3vh, 14px));
+  background:
+    linear-gradient(135deg,
+      #6f6f6f 0%, #e9e9e9 14%, #7d7d7d 27%, #3b3b3b 38%, #cfcfcf 50%,
+      #5c5c5c 62%, #f4f4f4 76%, #6a6a6a 88%, #bdbdbd 100%);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.65),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    inset 0 2px 6px rgba(255, 255, 255, 0.35);
+}
+
+[data-theme="dark"] .home .tile {
+  color: #ececec;
+  background:
+    radial-gradient(120% 80% at 25% -10%, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0) 60%),
+    radial-gradient(90% 70% at 90% 110%, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(180deg, #2b2b2b 0%, #1d1d1d 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .home .tile-label {
+  color: #bdbdbd;
+}
+
+[data-theme="dark"] .home .arrow-button,
+[data-theme="dark"] .home .stack-list li {
+  color: #f2f2f2;
+  background: linear-gradient(180deg, #3a3a3a 0%, #262626 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .home .tile:has(.tile-link):hover .arrow-button {
+  background: linear-gradient(180deg, #474747 0%, #2e2e2e 100%);
+}
+
+[data-theme="dark"] .home .monogram-large,
+[data-theme="dark"] .home .intro-logo .monogram {
+  color: #f2f2f2;
+}
+
+[data-theme="dark"] .home .home-footer {
+  color: #9a9a9a;
+}
+
+@media (max-width: 600px) {
+  [data-theme="dark"] .home .bento {
+    padding: 8px;
+    border-radius: calc(var(--radius-lg) + 8px);
+  }
+}

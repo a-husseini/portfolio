@@ -1,0 +1,369 @@
+/* ==========================================================================
+   Reusable components shared by every page.
+   ========================================================================== */
+
+/* ---------- Tile: the rounded gray card used across the site ---------- */
+.tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-lg);
+  color: var(--color-text);
+  background:
+    radial-gradient(120% 90% at 85% 95%, var(--color-tile-shine) 0%, transparent 55%),
+    var(--color-tile);
+  overflow: hidden;
+  transition: background-color var(--duration) ease, transform var(--duration) var(--ease);
+}
+
+.tile-label {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.tile-title {
+  margin-top: var(--space-4);
+  font-size: var(--text-xl);
+  line-height: 1.25;
+}
+
+/* Whole-tile links: the stretched link makes the full card clickable. */
+.tile-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.tile-link:focus-visible {
+  outline: none;
+}
+
+.tile:has(.tile-link:focus-visible) {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.tile:has(.tile-link):hover .arrow-button {
+  background: var(--color-control-hover);
+  transform: translate(2px, -2px);
+}
+
+/* ---------- Round arrow / plus button ---------- */
+.arrow-button {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: var(--radius-round);
+  color: var(--color-text);
+  background: var(--color-control);
+  box-shadow: var(--shadow-control);
+  transition: background-color var(--duration) ease, transform var(--duration) var(--ease);
+}
+
+.arrow-button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.tile .arrow-button {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+}
+
+.tile .arrow-button.is-top {
+  top: var(--space-4);
+  bottom: auto;
+}
+
+/* ---------- Primary button ---------- */
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-round);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-panel);
+  background: var(--color-text);
+  transition: opacity var(--duration) ease, transform var(--duration) var(--ease);
+}
+
+.button:hover {
+  opacity: 0.85;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.button.is-ghost {
+  color: var(--color-text);
+  background: transparent;
+}
+
+/* ---------- Chips ---------- */
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--radius-round);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  border: 1px solid currentColor;
+  opacity: 0.85;
+}
+
+/* ---------- Monogram logo ---------- */
+.monogram {
+  width: 44px;
+  height: 44px;
+  color: var(--color-text);
+}
+
+/* ---------- Status dot ---------- */
+.status-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  margin-right: var(--space-2);
+  border-radius: 50%;
+  background: var(--color-available);
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  animation: status-pulse 2.4s ease-out infinite;
+  vertical-align: middle;
+}
+
+@keyframes status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.55); }
+  70% { box-shadow: 0 0 0 8px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+/* ---------- Header for inner pages ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-bottom: var(--space-7);
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.site-nav ul {
+  display: flex;
+  gap: var(--space-5);
+}
+
+.site-nav a {
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+  transition: color var(--duration) ease;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-text);
+}
+
+.site-nav a[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-round);
+  background: transparent;
+  color: var(--color-text);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Show the icon for the theme you would switch TO. */
+.icon-moon,
+[data-theme="dark"] .icon-sun {
+  display: block;
+}
+
+.icon-sun,
+[data-theme="dark"] .icon-moon {
+  display: none;
+}
+
+/* ---------- Footer for inner pages ---------- */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-sm);
+}
+
+.footer-cta {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.footer-cta a {
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(110px, auto));
+  gap: var(--space-3) var(--space-6);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.footer-links a:hover,
+.footer-cta a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.footer-copy {
+  flex-basis: 100%;
+  max-width: none;
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+}
+
+/* ---------- Form ---------- */
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.form label {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-md);
+  text-transform: none;
+  letter-spacing: normal;
+  background: var(--color-panel);
+  transition: border-color var(--duration) ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form .button {
+  justify-self: start;
+}
+
+.form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-status {
+  min-height: 1.5em;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.form-status.is-success {
+  color: var(--color-success);
+}
+
+.form-status.is-error {
+  color: var(--color-error);
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header {
+    flex-wrap: wrap;
+    padding-bottom: var(--space-6);
+  }
+
+  .site-nav,
+  .site-nav ul {
+    gap: var(--space-4);
+  }
+}
+
+/* ---------- Small notice (shown when the site is opened from disk) ---------- */
+.site-notice {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-5);
+  z-index: 4000;
+  width: min(92vw, 560px);
+  transform: translateX(-50%);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: #f2f2f2;
+  background: rgba(20, 20, 20, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}

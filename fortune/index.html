@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0c0c0c" />
+    <meta name="referrer" content="no-referrer" />
+    <title>Tech Fortune | Amir Husseini</title>
+    <meta name="description" content="Get a painfully relatable tech fortune, then save it." />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="fortune.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../" class="home" aria-label="Amir Husseini, portfolio home">
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+          <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+        </svg>
+        <span>Amir Husseini<br /><small>Full-stack developer</small></span>
+      </a>
+    </header>
+
+    <main>
+      <form id="draw" hidden>
+        <h1>Your tech future, roasted with love</h1>
+        <label for="name">First name (optional)</label>
+        <input id="name" maxlength="20" autocomplete="off" spellcheck="false" />
+        <button class="primary" type="submit">Tell my fortune</button>
+        <p class="note">Your name stays on this phone.</p>
+      </form>
+
+      <section id="result" aria-live="polite" hidden>
+        <img id="receipt" alt="" />
+        <div class="actions">
+          <button class="primary" id="png">Save image</button>
+          <button id="pdf">Save PDF</button>
+          <button id="share" hidden>Share</button>
+          <button id="again">Tell me another</button>
+        </div>
+      </section>
+
+      <nav aria-label="Portfolio">
+        <h2>The human behind the machine</h2>
+        <a href="../projects/">See my projects</a>
+        <a href="../about/">About me</a>
+        <a href="../contact/">Say hello</a>
+      </nav>
+    </main>
+    <script src="fortune.js" defer></script>
+  </body>
+</html>

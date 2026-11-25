@@ -1,0 +1,90 @@
+/* ==========================================================================
+   Projects page.
+   ========================================================================== */
+
+.project-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-6);
+  padding: clamp(var(--space-5), 3vw, var(--space-6));
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(120% 90% at 85% 95%, var(--color-tile-shine) 0%, transparent 55%),
+    var(--color-tile);
+}
+
+.project.is-featured {
+  color: var(--color-card-dark-text);
+  background: var(--color-card-dark);
+}
+
+.project-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.project-label {
+  font-size: var(--text-sm);
+  opacity: 0.75;
+}
+
+.project-title {
+  font-size: var(--text-xl);
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding-top: var(--space-3);
+}
+
+.project.is-featured .button {
+  color: #111111;
+  background: #f2f2f2;
+  border-color: #f2f2f2;
+}
+
+.project-shots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.project-shots img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: left top;
+  border-radius: var(--radius-sm);
+}
+
+.project-shots img:first-child {
+  grid-column: 1 / -1;
+}
+
+.project.is-compact {
+  grid-template-columns: 1fr;
+}
+
+.project-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+}
+
+@media (max-width: 860px) {
+  .project,
+  .project-pair {
+    grid-template-columns: 1fr;
+  }
+}

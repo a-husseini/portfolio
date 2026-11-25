@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeScribe — Amir Husseini</title>
+    <meta name="description" content="SafeScribe by Amir Husseini: a secure AI meeting assistant that hides private details before the AI or the screen sees them." />
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="../assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/page.css" />
+    <link rel="stylesheet" href="../assets/css/case.css" />
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="panel">
+      <header class="site-header">
+        <a href="../" aria-label="Amir Husseini, home">
+          <svg class="monogram" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+            <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../about/">About</a></li>
+            <li><a href="../projects/" aria-current="true">Projects</a></li>
+            <li><a href="../contact/">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" /></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          </button>
+        </nav>
+      </header>
+
+      <main id="main">
+        <div class="page-intro">
+          <p class="label caps">Case study · Live at the tech expo</p>
+          <h1 class="page-title">SafeScribe</h1>
+          <p class="page-lead">
+            A secure AI meeting assistant that runs on a Windows laptop. It takes live notes, and a privacy guard blanks out private details before the AI or the screen ever sees them.
+          </p>
+          <ul class="chip-list" aria-label="Technologies">
+            <li class="chip">Python</li>
+            <li class="chip">FastAPI</li>
+            <li class="chip">Presidio</li>
+            <li class="chip">spaCy</li>
+            <li class="chip">RealtimeSTT</li>
+            <li class="chip">Ollama</li>
+            <li class="chip">React</li>
+            <li class="chip">TypeScript</li>
+          </ul>
+        </div>
+
+        <div class="case-shots">
+          <figure>
+            <img src="../assets/img/safescribe-live.webp" width="1280" height="960" alt="SafeScribe live transcript with private details replaced by labels" />
+            <figcaption>Live transcript. Every name, number and secret is invented for the demo.</figcaption>
+          </figure>
+          <figure>
+            <img src="../assets/img/safescribe-autopsy.webp" width="1280" height="960" alt="SafeScribe after a meeting, with a summary and a could have been an email score of 41" />
+            <figcaption>The meeting autopsy: summary, decisions and a “could've been an email” score.</figcaption>
+          </figure>
+        </div>
+
+        <div class="card-grid">
+          <section class="dark-card">
+            <h2 class="card-title">The idea</h2>
+            <p>Microphone, live transcription, privacy guard, AI, screen, in that order. The AI and the screen only receive text the guard has released.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">What it hides</h2>
+            <p>Names, phone numbers, emails, cards, SSNs, bank details, addresses, spoken passwords, API keys and project code names. People become PERSON 1 and PERSON 2, so action items can still have owners.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Private by default</h2>
+            <p>Transcription, the guard and the AI run on the laptop. Transcripts stay in memory and are wiped 90 seconds after the autopsy. If the guard fails, text is hidden, never shown.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Ask the data</h2>
+            <p>Ask a question by voice or text and get an answer with a chart. Generated SQL must be one read-only SELECT on a read-only file.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Honest limits</h2>
+            <p>No detector is perfect. An unusual name, or a secret spoken with no hint around it, can get through.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">See it live</h2>
+            <p>It needs a microphone and local models, so it isn't a web demo. Find me at the expo, or get in touch for a walkthrough.</p>
+          </section>
+        </div>
+
+        <nav class="case-nav" aria-label="More projects">
+          <a class="button is-ghost" href="../projects/">All projects</a>
+          <a class="button" href="../badgerwatch/">Next: BadgerWatch <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
+        </nav>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-cta">
+          <span class="label">Have a project in mind?</span>
+          <a href="../contact/">Let's talk →</a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; <span data-year>2026</span> Amir Husseini</p>
+      </footer>
+    </div>
+
+    <script src="../assets/js/site.js"></script>
+  </body>
+</html>

@@ -1,0 +1,109 @@
+/* ==========================================================================
+   About page: profile card on the left, story on the right.
+   ========================================================================== */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(var(--space-6), 5vw, var(--space-8));
+  align-items: start;
+}
+
+.profile {
+  position: sticky;
+  top: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.profile-card {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1 / 0.95;
+  border-radius: var(--radius-lg);
+  color: #f2f2f2;
+  background:
+    radial-gradient(60% 60% at 50% 40%, #262626 0%, transparent 75%),
+    #050505;
+}
+
+[data-theme="dark"] .profile-card {
+  background:
+    radial-gradient(60% 60% at 50% 40%, #2d2d2d 0%, transparent 75%),
+    #0d0d0d;
+  outline: 1px solid var(--color-line);
+}
+
+.profile-card svg {
+  width: 48%;
+  height: auto;
+}
+
+.profile-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.profile-links {
+  display: flex;
+  gap: var(--space-4);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.profile-links a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.profile-name {
+  text-align: right;
+}
+
+.profile-name strong {
+  display: block;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.profile-name span {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.about-hello {
+  margin: var(--space-2) 0 var(--space-5);
+  font-size: var(--text-display);
+  text-transform: none;
+}
+
+.about-hello .caps {
+  text-transform: uppercase;
+}
+
+.bio {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.skill-card .chip-list {
+  margin-top: auto;
+}
+
+.language-list .row {
+  grid-template-columns: 1fr auto;
+}
+
+@media (max-width: 860px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile {
+    position: static;
+    max-width: 420px;
+  }
+}

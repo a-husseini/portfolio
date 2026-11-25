@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BadgerWatch — Amir Husseini</title>
+    <meta name="description" content="BadgerWatch by Amir Husseini: one map of official incident data and community reports across Wisconsin." />
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="../assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/page.css" />
+    <link rel="stylesheet" href="../assets/css/case.css" />
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="panel">
+      <header class="site-header">
+        <a href="../" aria-label="Amir Husseini, home">
+          <svg class="monogram" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+            <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../about/">About</a></li>
+            <li><a href="../projects/" aria-current="true">Projects</a></li>
+            <li><a href="../contact/">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" /></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          </button>
+        </nav>
+      </header>
+
+      <main id="main">
+        <div class="page-intro">
+          <p class="label caps">Case study · In development</p>
+          <h1 class="page-title">BadgerWatch</h1>
+          <p class="page-lead">
+            One map of official incident data and community reports from verified users across Wisconsin. Not a replacement for 911.
+          </p>
+          <ul class="chip-list" aria-label="Technologies">
+            <li class="chip">React</li>
+            <li class="chip">Leaflet</li>
+            <li class="chip">Node.js</li>
+            <li class="chip">Express</li>
+            <li class="chip">SQLite</li>
+            <li class="chip">Web Push</li>
+          </ul>
+        </div>
+
+        <div class="case-shots is-single">
+          <figure>
+            <img src="../assets/img/badgerwatch-map.webp" width="1280" height="960" alt="BadgerWatch map of Wisconsin with filters for time, source and category" />
+            <figcaption>Development build: public Madison and UW–Madison police data plus test community reports. Map © OpenStreetMap contributors.</figcaption>
+          </figure>
+        </div>
+
+        <div class="card-grid">
+          <section class="dark-card">
+            <h2 class="card-title">The idea</h2>
+            <p>Official police and traffic sources and community reports, side by side on one map, clearly labeled by source and filterable by time and type.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Trust</h2>
+            <p>Only phone-verified users can post or vote. Neighbors confirm or dispute a report, disputed reports get hidden, and moderators can step in.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Privacy</h2>
+            <p>Community pins are rounded to about 100 meters. Sensitive police calls are skipped by rules, which can miss some. Photo metadata is removed, and a moderator approves each photo.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">Alerts</h2>
+            <p>Saved places with a radius, incident types, quiet hours, instant alerts or a daily digest, and browser push.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">AI with limits</h2>
+            <p>Optional AI only suggests, or holds a report for review. Moderators decide. Without it, plain rules are used.</p>
+          </section>
+          <section class="dark-card">
+            <h2 class="card-title">What's next</h2>
+            <p>More cities and data sources, reviewed Spanish and Hmong translations, and stronger checks against throwaway accounts.</p>
+          </section>
+        </div>
+
+        <nav class="case-nav" aria-label="More projects">
+          <a class="button is-ghost" href="../projects/">All projects</a>
+          <a class="button" href="../fortune/">Next: Tech Fortune <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg></a>
+        </nav>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-cta">
+          <span class="label">Have a project in mind?</span>
+          <a href="../contact/">Let's talk →</a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; <span data-year>2026</span> Amir Husseini</p>
+      </footer>
+    </div>
+
+    <script src="../assets/js/site.js"></script>
+  </body>
+</html>

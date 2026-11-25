@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Amir Husseini</title>
+    <meta name="description" content="Selected projects by Amir Husseini, including Tap Track, an AI-powered ticket analytics app with a live demo." />
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="../assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/page.css" />
+    <link rel="stylesheet" href="../assets/css/projects.css" />
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="panel">
+      <header class="site-header">
+        <a href="../" aria-label="Amir Husseini, home">
+          <svg class="monogram" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+            <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../about/">About</a></li>
+            <li><a href="./" aria-current="page">Projects</a></li>
+            <li><a href="../contact/">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" /></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          </button>
+        </nav>
+      </header>
+
+      <main id="main">
+        <div class="page-intro">
+          <p class="label caps">Projects</p>
+          <h1 class="page-title">Selected work</h1>
+          <p class="page-lead">
+            A few highlights from my own projects and professional work. Some are part of
+            private company work and aren't available as a public demo.
+          </p>
+        </div>
+
+        <div class="project-list">
+          <!-- Tap Track -->
+          <article class="project is-featured">
+            <div class="project-body">
+              <p class="project-label">Featured · Live demo</p>
+              <h2 class="project-title">Tap Track</h2>
+              <p>
+                AI-powered ticket analytics app for IT service teams: drag-and-drop
+                dashboards, a data explorer with advanced filters, an AI assistant
+                that answers with charts and tables, and Hypercare project tracking.
+                Built with React, Express and PostgreSQL.
+              </p>
+              <ul class="chip-list" aria-label="Technologies">
+                <li class="chip">React</li>
+                <li class="chip">Node.js</li>
+                <li class="chip">PostgreSQL</li>
+                <li class="chip">AI</li>
+              </ul>
+              <p class="project-label">
+                The demo runs in your browser with sample data. Sign in as Admin or Viewer.
+              </p>
+              <div class="project-actions">
+                <a class="button" href="../tap-track/">
+                  Try the live demo
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+                </a>
+              </div>
+            </div>
+            <div class="project-shots">
+              <img src="../assets/img/tap-track-dash.webp" width="480" height="360" alt="Tap Track dashboard with ticket charts" loading="lazy" />
+              <img src="../assets/img/tap-track-ai.webp" width="480" height="360" alt="Tap AI answering a question with a bar chart" loading="lazy" />
+              <img src="../assets/img/tap-track-hc.webp" width="480" height="360" alt="Hypercare projects overview" loading="lazy" />
+            </div>
+          </article>
+
+          <div class="project-pair">
+            <!-- SafeScribe -->
+            <article class="project is-compact">
+              <div class="project-body">
+                <p class="project-label">Case study · Live at the tech expo</p>
+                <h2 class="project-title">SafeScribe</h2>
+                <p>
+                  A secure AI meeting assistant that runs on a laptop and blanks out private details before the AI or the screen sees them.
+                </p>
+                <ul class="chip-list" aria-label="Technologies">
+                  <li class="chip">Python</li>
+                  <li class="chip">FastAPI</li>
+                  <li class="chip">Presidio</li>
+                  <li class="chip">React</li>
+                </ul>
+                <div class="project-actions">
+                  <a class="button" href="../safescribe/">
+                    See how it works
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- BadgerWatch -->
+            <article class="project is-compact">
+              <div class="project-body">
+                <p class="project-label">Case study · In development</p>
+                <h2 class="project-title">BadgerWatch</h2>
+                <p>
+                  One map of official incident data and community reports from verified users across Wisconsin.
+                </p>
+                <ul class="chip-list" aria-label="Technologies">
+                  <li class="chip">React</li>
+                  <li class="chip">Leaflet</li>
+                  <li class="chip">Express</li>
+                  <li class="chip">SQLite</li>
+                </ul>
+                <div class="project-actions">
+                  <a class="button" href="../badgerwatch/">
+                    See the project
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Tech Fortune -->
+          <article class="project is-compact">
+            <div class="project-body">
+              <p class="project-label">Tech expo · Try it</p>
+              <h2 class="project-title">Tech Fortune</h2>
+              <p>
+                A tech-expo fortune machine: three taps on a tablet and you get a
+                painfully relatable fortune on a receipt, ready to save as an image
+                or PDF. The booth app runs locally on a laptop and keeps only a
+                daily counter.
+              </p>
+              <ul class="chip-list" aria-label="Technologies">
+                <li class="chip">Python</li>
+                <li class="chip">FastAPI</li>
+                <li class="chip">React</li>
+                <li class="chip">TypeScript</li>
+              </ul>
+              <div class="project-actions">
+                <a class="button" href="../fortune/">
+                  Tell my fortune
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <div class="project-pair">
+            <!-- Indicate me -->
+            <article class="project is-compact">
+              <div class="project-body">
+                <p class="project-label">Indicate me · Full-Stack Developer · 2025–2026</p>
+                <h2 class="project-title">Full-stack application features</h2>
+                <p>
+                  At Indicate me, developed application features with C# and .NET,
+                  connecting Vue interfaces to REST APIs, with a focus on validation
+                  and reliable error handling.
+                </p>
+                <ul class="chip-list" aria-label="Technologies">
+                  <li class="chip">C#</li>
+                  <li class="chip">.NET</li>
+                  <li class="chip">Vue</li>
+                  <li class="chip">REST APIs</li>
+                </ul>
+              </div>
+            </article>
+
+            <!-- Connected SRS -->
+            <article class="project is-compact">
+              <div class="project-body">
+                <p class="project-label">WSP i Sverige AB · IoT Software Developer · 2021</p>
+                <h2 class="project-title">Connected SRS Smart City</h2>
+                <p>
+                  Supported WSP's smart-city project by collecting and organizing IoT
+                  sensor data for sustainability metrics and clear reports for
+                  decision-makers.
+                </p>
+                <ul class="chip-list" aria-label="Technologies">
+                  <li class="chip">IoT</li>
+                  <li class="chip">Sensor data</li>
+                  <li class="chip">Reporting</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-cta">
+          <span class="label">Have a project in mind?</span>
+          <a href="../contact/">Let's talk →</a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../contact/">Contact</a></li>
+        </ul>
+        <p class="footer-copy">&copy; <span data-year>2026</span> Amir Husseini</p>
+      </footer>
+    </div>
+
+    <script src="../assets/js/site.js"></script>
+  </body>
+</html>

@@ -1,153 +1,176 @@
 <!doctype html>
-<!--
-  ============================================================
-  PORTFOLIO STARTER TEMPLATE
-  ============================================================
-  How to use this file:
-  1. Replace anything in [SQUARE BRACKETS] with your own info.
-  2. Save the file.
-  3. Refresh your browser to see changes.
-
-  Tip: Search for "REPLACE" to find every spot you need to edit.
-  ============================================================
--->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amir Husseini — Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Amir Husseini — Full-Stack Developer</title>
+    <meta name="description" content="Amir Husseini, full-stack developer working with C#, .NET, React and AI. Projects, experience and a live demo of Tap Track." />
+    <meta property="og:title" content="Amir Husseini — Full-Stack Developer" />
+    <meta property="og:description" content="Full-stack developer working with C#, .NET, React and AI." />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/home.css" />
+    <link rel="stylesheet" href="assets/sim/simulation.css" />
+    <script>
+      // Hide the page until the build animation is ready (it reveals the page).
+      (function () {
+        try {
+          if (location.search.indexOf("sim=off") !== -1) return;
+          if (localStorage.getItem("sim-played") === "1" && location.search.indexOf("sim=on") === -1) return;
+          document.documentElement.classList.add("sim-boot");
+          setTimeout(function () {
+            if (!window.__SIM_READY) document.documentElement.classList.remove("sim-boot");
+          }, 4000);
+        } catch (err) {}
+      })();
+    </script>
   </head>
 
-  <body>
-    <!-- ===================== NAVIGATION ===================== -->
-    <nav class="navbar">
-      <a href="#top" class="nav-logo">Amir Husseini</a>
+  <body class="home">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-      <!-- These links jump to sections further down the page -->
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-
-    <!-- ===================== HERO / INTRO ===================== -->
-    <header id="top" class="hero">
-      <!-- REPLACE: your name -->
-      <h1>Hi, I'm Amir Husseini</h1>
-
-      <!-- REPLACE: one sentence about who you are -->
-      <p class="tagline">
-        Enthusiastic fullstack developer building things that matter.
-      </p>
-
-      <a href="#projects" class="button">See My Work</a>
-    </header>
-
-    <!-- ===================== ABOUT ===================== -->
-    <section id="about" class="section">
-      <h2>About Me</h2>
-      <p>
-        Hi, I'm a Full Stack Developer who enjoys building web applications from
-        start to finish. I'm continuously learning new technologies, frameworks,
-        and best practices to improve my skills in both front-end and back-end
-        development. I am passionate about creating user-friendly, scalable, and
-        efficient solutions that solve real-world problems. As I grow in my
-        career, I am excited to work on innovative projects, collaborate with
-        talented teams, and contribute to developing impactful digital products.
-      </p>
-
-      <h3>Skills</h3>
-      <ul class="skills-list">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript (ES6+)</li>
-        <li>TypeScript</li>
-        <li>React</li>
-        <li>Node.js</li>
-        <li>Express.js</li>
-        <li>REST APIs</li>
-        <li>MongoDB</li>
-        <li>SQL</li>
-        <li>Git &amp; GitHub</li>
-        <li>Responsive Web Design</li>
-      </ul>
-    </section>
-
-    <!-- ===================== PROJECTS ===================== -->
-    <section id="projects" class="section">
-      <h2>Projects</h2>
-
-      <div class="project-grid">
-        <!-- PROJECT CARD 1 — copy this whole block to add more projects -->
-        <article class="project-card">
-          <!-- REPLACE: project name -->
-          <h3>Task Management App</h3>
-          <p>
-            A full-stack task management application built with React, Node.js,
-            Express, and MongoDB. Users can create, update, and organize tasks.
-            This project helped me learn authentication, REST APIs, and database
-            integration.
+    <main id="main" class="bento" aria-label="Amir Husseini">
+      <!-- Intro -->
+      <section id="tile-intro" class="tile tile-intro">
+        <div class="intro-top">
+          <a class="intro-logo" href="./" aria-label="Amir Husseini, home">
+            <svg class="monogram" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+              <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+            </svg>
+          </a>
+          <p class="intro-clock" data-clock>
+            <span class="intro-clock-place">Milwaukee · <span data-clock-day>Today</span></span>
+            <time data-clock-time>--:--</time>
           </p>
-          <!-- REPLACE: link to the live site or GitHub repo -->
-          <a
-            href="[https://github.com/yourusername/project]"
-            class="project-link"
-            >View Project</a
-          >
-        </article>
+        </div>
 
-        <!-- PROJECT CARD 2 -->
-        <article class="project-card">
-          <h3>E-Commerce Store</h3>
-          <p>
-            An online shopping platform featuring product listings, shopping
-            cart, user authentication, and payment integration. Built using
-            React, Express, MongoDB, and Stripe APIs.
-          </p>
-          <a
-            href="[https://github.com/yourusername/project]"
-            class="project-link"
-            >View Project</a
-          >
-        </article>
+        <h1 class="intro-headline">
+          <span class="intro-line">Hello: I'm Amir <span aria-hidden="true">👋</span></span>
+          <span class="intro-line">Full-stack developer</span>
+          <span class="intro-line">C# + .NET + React <span aria-hidden="true">✨</span></span>
+        </h1>
 
-        <!-- PROJECT CARD 3 -->
-        <article class="project-card">
-          <h3>Developer Portfolio Website</h3>
-          <p>
-            A responsive personal portfolio website showcasing my projects,
-            technical skills, and contact information. Built with HTML, CSS, and
-            JavaScript while focusing on modern UI design and performance.
-          </p>
-          <a
-            href="https://github.com/Amir-icstars/Amir-icstars.github.io"
-            class="project-link"
-            >View Project</a
-          >
-        </article>
-      </div>
-    </section>
+        <ul class="intro-links">
+          <li><a href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="projects/">Projects</a></li>
+          <li><a href="fortune/">Tech Fortune</a></li>
+          <li><a href="about/">About</a></li>
+          <li><a href="contact/">Contact</a></li>
+        </ul>
+      </section>
 
-    <!-- ===================== CONTACT ===================== -->
-    <section id="contact" class="section">
-      <h2>Get In Touch</h2>
-      <p>
-        I'm always interested in new opportunities, exciting projects, and
-        connecting with other developers. Feel free to reach out!
-      </p>
+      <!-- Monogram (stands in for a portrait) -->
+      <section id="tile-monogram" class="tile tile-monogram" aria-label="Amir Husseini">
+        <svg class="monogram-large" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="square" aria-hidden="true">
+          <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+        </svg>
+        <p class="monogram-caption">Amir Husseini</p>
+      </section>
 
-      <ul class="contact-list">
-        <li><a href="mailto:ahusseini@icstars.org">Email</a></li>
-        <li><a href="https://github.com/Amir-icstars">GitHub</a></li>
-        <li><a href="https://github.com/Amir-icstars">LinkedIn</a></li>
-      </ul>
-    </section>
+      <!-- Status -->
+      <section id="tile-status" class="tile tile-status">
+        <p class="tile-label">Status</p>
+        <p class="status-text"><span class="status-dot" aria-hidden="true"></span>Open to work</p>
+        <a class="arrow-button is-top tile-link" href="contact/" aria-label="Get in touch">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg>
+        </a>
+      </section>
 
-    <!-- ===================== FOOTER ===================== -->
-    <footer class="footer">
-      <p>&copy; 2026 Amir Husseini. Built with HTML, CSS, and GitHub Pages.</p>
+      <!-- Theme switch -->
+      <section id="tile-theme" class="tile tile-theme">
+        <button class="theme-tile-button tile-link" type="button" data-theme-toggle aria-label="Switch theme">
+          <svg class="theme-icon theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" />
+          </svg>
+          <svg class="theme-icon theme-icon-dark" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" />
+          </svg>
+        </button>
+        <p class="theme-text">Switch to <span data-theme-next>dark</span> mode.</p>
+      </section>
+
+      <!-- Projects -->
+      <section id="tile-projects" class="tile tile-projects">
+        <p class="tile-label">Projects</p>
+        <h2 class="tile-title">View my work</h2>
+        <a class="arrow-button tile-link" href="projects/" aria-label="View my projects">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </section>
+
+      <!-- Say hello -->
+      <section id="tile-hello" class="tile tile-hello">
+        <p class="tile-label">Say hello <span aria-hidden="true">👋</span></p>
+        <h2 class="tile-title">Let's work together</h2>
+        <a class="arrow-button tile-link" href="contact/" aria-label="Contact me">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </section>
+
+      <!-- About -->
+      <section id="tile-about" class="tile tile-about">
+        <p class="tile-label">About</p>
+        <h2 class="tile-title">Who I am</h2>
+        <a class="arrow-button tile-link" href="about/" aria-label="About me">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </section>
+
+      <!-- Featured project -->
+      <section id="tile-featured" class="tile tile-featured">
+        <p class="tile-label">Featured project</p>
+        <h2 class="tile-title">Tap Track, live demo.</h2>
+        <div class="featured-shots">
+          <img src="assets/img/tap-track-dash.webp" width="480" height="360" alt="Tap Track dashboard with ticket charts" loading="lazy" />
+          <img src="assets/img/tap-track-ai.webp" width="480" height="360" alt="Tap AI answering a question with a bar chart" loading="lazy" />
+          <img src="assets/img/tap-track-hc.webp" width="480" height="360" alt="Hypercare projects overview" loading="lazy" />
+        </div>
+        <a class="arrow-button is-top tile-link" href="tap-track/" aria-label="Open the Tap Track live demo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </section>
+
+      <!-- Experience -->
+      <section id="tile-experience" class="tile tile-experience">
+        <p class="tile-label">Experience</p>
+        <h2 class="tile-title">Full-stack, web &amp; IoT.</h2>
+        <a class="arrow-button tile-link" href="about/#experience" aria-label="See my experience">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+        </a>
+      </section>
+
+      <!-- Stack -->
+      <section id="tile-stack" class="tile tile-stack">
+        <p class="tile-label">Tools I use</p>
+        <h2 class="tile-title">My daily stack</h2>
+        <div class="stack-marquee">
+          <ul class="stack-list" aria-label="Technologies">
+            <li>C#</li>
+            <li>.NET</li>
+            <li>React</li>
+            <li>TS</li>
+            <li>Vue</li>
+            <li>AWS</li>
+            <li>Git</li>
+            <li>JS</li>
+            <li>CI/CD</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="home-footer">
+      <p>&copy; <span data-year>2026</span> Amir Husseini · Built with HTML, CSS and JavaScript.</p>
     </footer>
+
+    <script src="assets/js/site.js"></script>
+    <script src="assets/sim/simulation.js"></script>
+    <script src="assets/js/prefetch-demo.js"></script>
   </body>
 </html>

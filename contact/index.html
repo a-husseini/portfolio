@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact — Amir Husseini</title>
+    <meta name="description" content="Get in touch with Amir Husseini about opportunities, projects or collaboration." />
+    <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="../assets/fonts/ibm-plex-mono-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <script src="../assets/js/theme-init.js"></script>
+    <link rel="stylesheet" href="../assets/css/tokens.css" />
+    <link rel="stylesheet" href="../assets/css/base.css" />
+    <link rel="stylesheet" href="../assets/css/components.css" />
+    <link rel="stylesheet" href="../assets/css/page.css" />
+    <link rel="stylesheet" href="../assets/css/contact.css" />
+  </head>
+
+  <body class="page">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="panel">
+      <header class="site-header">
+        <a href="../" aria-label="Amir Husseini, home">
+          <svg class="monogram" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" aria-hidden="true">
+            <path d="M4 58 L20 6 L36 58" /><path d="M44 6 V58 M60 6 V58" /><path d="M11 36 H60" />
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Main">
+          <ul>
+            <li><a href="../">Home</a></li>
+            <li><a href="../about/">About</a></li>
+            <li><a href="../projects/">Projects</a></li>
+            <li><a href="./" aria-current="page">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+            <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" /></svg>
+            <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2" /><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6" /></svg>
+          </button>
+        </nav>
+      </header>
+
+      <main id="main">
+        <div class="page-intro">
+          <p class="label caps">Say hello <span aria-hidden="true">👋</span></p>
+          <h1 class="page-title">Let's work together</h1>
+          <p class="page-lead">
+            I'm always interested in new opportunities, exciting projects, and
+            connecting with other developers. Send me a message below and I'll
+            get back to you.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          <section class="contact-form-card" aria-labelledby="form-heading">
+            <h2 class="visually-hidden" id="form-heading">Send a message</h2>
+            <!-- Messages are emailed by FormSubmit (formsubmit.co); see assets/js/contact-form.js. -->
+            <form class="form" id="contact-form" action="https://formsubmit.co/ahusseini@icstars.org" method="POST">
+              <div class="form-row">
+                <label>
+                  <span>Name</span>
+                  <input type="text" name="name" autocomplete="name" required maxlength="100" />
+                </label>
+                <label>
+                  <span>Email</span>
+                  <input type="email" name="email" autocomplete="email" required maxlength="150" />
+                </label>
+              </div>
+              <label>
+                <span>Message</span>
+                <textarea name="message" rows="6" required maxlength="4000"></textarea>
+              </label>
+              <!-- Spam trap: real people never fill this in. -->
+              <input type="text" name="_honey" class="form-trap" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <input type="hidden" name="_subject" value="New message from your portfolio" />
+              <input type="hidden" name="_template" value="table" />
+              <button type="submit" class="button">Send message</button>
+              <p class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </section>
+
+          <aside class="contact-aside" aria-label="Other ways to connect">
+            <p class="contact-status"><span class="status-dot" aria-hidden="true"></span>Open to work</p>
+            <a class="contact-link" href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">
+              LinkedIn
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+            <a class="contact-link" href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">
+              GitHub
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+            </a>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-cta">
+          <span class="label">Want to see what I've built?</span>
+          <a href="../projects/">View my work →</a>
+        </div>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Amir-icstars" data-link="github" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          <li><a href="#" data-link="linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          <li><a href="../about/">About</a></li>
+          <li><a href="../projects/">Projects</a></li>
+        </ul>
+        <p class="footer-copy">&copy; <span data-year>2026</span> Amir Husseini</p>
+      </footer>
+    </div>
+
+    <script src="../assets/js/site.js"></script>
+    <script src="../assets/js/contact-form.js"></script>
+  </body>
+</html>

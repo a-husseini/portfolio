@@ -1,36 +1,71 @@
-# Portfolio Starter Template
+# Amir Husseini — Portfolio
 
-A simple, editable personal portfolio built with plain HTML and CSS, ready to host for free on GitHub Pages.
+Personal portfolio, hosted on GitHub Pages at https://amir-icstars.github.io.
+Plain HTML, CSS and JavaScript: no build step. Edit a file, commit, push.
 
-## Files
-- `index.html` — your page content (what it says)
-- `styles.css` — your page styling (how it looks)
-- `README.md` — this file
+## Pages
 
-## Step 1 — Make it yours (edit on your computer)
-1. Open `index.html` in a text editor (VS Code).
-2. Find every `[SQUARE BRACKET]` placeholder and replace it with your info. Tip: search the file for `REPLACE`.
-3. Open `index.html` in your browser to preview. Edit → save → refresh to see changes.
-4. Want different colors? Open `styles.css` and change the values under `:root` at the top.
+| URL | File | What's on it |
+|---|---|---|
+| `/` | `index.html` | Bento home page with the "AI agents build the page" intro animation |
+| `/about/` | `about/index.html` | Bio, experience, education, skills, languages |
+| `/projects/` | `projects/index.html` | Tap Track (live demo) and other projects |
+| `/contact/` | `contact/index.html` | Contact form (FormSubmit) and links |
+| `/safescribe/` | `safescribe/` | SafeScribe case study |
+| `/badgerwatch/` | `badgerwatch/` | BadgerWatch case study |
+| `/fortune/` | `fortune/` | Tech Fortune page behind the booth QR code (copied from the Tech Fortune project) |
+| any missing URL | `404.html` | "Page not found" (GitHub Pages serves it automatically) |
+| `/tap-track/` | `tap-track/` | Built Tap Track demo (source is kept outside this repo) |
 
-## Step 2 — Put it on GitHub
-1. Go to github.com and click **New repository**.
-2. Name it **`your-username.github.io`** (use YOUR GitHub username exactly). This special name makes it your main site.
-3. Set it to **Public**. Click **Create repository**.
-4. On the new repo page, click **uploading an existing file**.
-5. Drag in `index.html` and `styles.css`, then write a commit message like `Add portfolio starter files` and click **Commit changes**.
+## Folder structure
 
-## Step 3 — Turn on GitHub Pages
-1. In your repo, go to **Settings** → **Pages** (left sidebar).
-2. Under **Branch**, select **`main`** and the **`/ (root)`** folder. Click **Save**.
-3. Wait 1–2 minutes, then visit **`https://your-username.github.io`**. Your site is live!
+```text
+assets/
+  css/
+    tokens.css       Design tokens: colors (light + dark), type, spacing, radii
+    base.css         Fonts, reset, typography, focus styles, utilities
+    components.css   Shared pieces: tiles, buttons, chips, header, footer, form
+    home.css         Bento grid for the home page
+    page.css         Shared layout for inner pages (panel, rows, dark cards, 404)
+    about.css        About page only
+    projects.css     Projects page only
+    contact.css      Contact page only
+    case.css         Project case studies
+  js/
+    theme-init.js    Applies the saved light/dark theme before the page paints
+    site.js          LINKS config, theme toggle, live clock, footer year
+    contact-form.js  Sends the contact form through FormSubmit
+    prefetch-demo.js Warms up the Tap Track demo in the background (home page)
+  sim/
+    simulation.js    The intro animation (home page only); SCHEMA lists the tiles it builds
+    simulation.css   Styles for the animation overlay
+  fonts/             IBM Plex Mono (self-hosted, Open Font License)
+  img/               Favicon and Tap Track screenshots
+```
 
-## Always-on habits (graded)
-- Write clear commit messages that say what changed (`Update about section`, not `stuff`).
-- Keep filenames lowercase with no spaces (`styles.css`, not `My Styles.css`).
-- Commit often — small, frequent commits beat one giant one.
+Every page loads `tokens.css`, `base.css` and `components.css`, then its own file.
 
-## Troubleshooting
-- **Page is blank / unstyled:** check that `styles.css` is spelled exactly right in the `<link>` tag and uploaded to the repo.
-- **404 error:** make sure the repo is named `your-username.github.io` and is Public, and give it 2 minutes.
-- **Changes not showing:** hard-refresh your browser (Ctrl+Shift+R / Cmd+Shift+R).
+## Common edits
+
+- **LinkedIn / GitHub links:** set them once in `LINKS` at the top of `assets/js/site.js`.
+  LinkedIn links stay hidden until a URL is filled in.
+- **Colors and fonts:** `assets/css/tokens.css` (`:root` for light, `[data-theme="dark"]` for dark).
+- **Status tile ("Open to work"):** `index.html` and `contact/index.html`.
+- **Experience, education, skills:** `about/index.html`.
+- **Projects:** `projects/index.html`.
+- **Contact form email:** `assets/js/contact-form.js` and the form `action` in `contact/index.html`.
+  After activating FormSubmit, replace the email with the random alias FormSubmit sends you.
+
+## Intro animation
+
+Plays on the home page at 1.5× speed. Clicking or tapping anywhere skips to the finished page.
+Add `?sim=off` to the URL to turn it off. If you add or rename tiles on the home page,
+update `SCHEMA` in `assets/sim/simulation.js` so the agents know what to build.
+
+## Run locally
+
+```bash
+npx serve -l 8000 .
+```
+
+Then open http://localhost:8000. (The contact form only works on the live site.)
