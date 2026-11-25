@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0c0c0c" />
     <meta name="referrer" content="no-referrer" />
+    <script>
+      // A booth QR code carries the fortune after the #. Without one, open the booth game.
+      if (location.hash.length < 2) location.replace('booth/')
+    </script>
     <title>Tech Fortune | Amir Husseini</title>
     <meta name="description" content="Get a painfully relatable tech fortune, then save it." />
     <link rel="icon" href="data:," />

@@ -4,7 +4,7 @@
   'use strict'
   const $ = (id) => document.getElementById(id)
   const FONT = '"IBM Plex Mono", ui-monospace, Consolas, monospace'
-  const PORTFOLIO = 'amir-icstars.github.io'
+  const PORTFOLIO = 'a-husseini.github.io/portfolio'
   const W = 640
   const SCALE = 2
   let canvas

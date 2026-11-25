@@ -8,7 +8,7 @@
   // ------------------------------------------------------------------
   var LINKS = {
     linkedin: "",
-    github: "https://github.com/Amir-icstars",
+    github: "https://github.com/a-husseini",
   };
 
   document.querySelectorAll("[data-link]").forEach(function (link) {

@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f3d5e" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦡</text></svg>" />
+    <link rel="apple-touch-icon" href="./icon.svg" />
+    <title>BadgerWatch</title>
+    <script type="module" crossorigin src="./assets/index-1cP1aVcM.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Cf_9YrEl.css">
+    <meta name="description" content="BadgerWatch demo: a saved snapshot of public incident records on a map." />
+    <style>body{display:flex;flex-direction:column;height:100dvh}
+#root{flex:1;min-height:0}
+#root .app{height:100%}
+.demo-bar{display:flex;gap:1rem;justify-content:center;align-items:center;padding:.35rem 1rem;background:#0f3d5e;color:#fff;font:600 13px/1.3 system-ui,sans-serif}
+.demo-bar a{color:#fff;white-space:nowrap}
+.demo-bar button{border:1px solid #fff;border-radius:8px;background:none;color:#fff;font:inherit;padding:.25rem .6rem;white-space:nowrap;cursor:pointer}
+</style>
+    <script>(() => {
+  'use strict';
+  const AT = '2026-11-25T05:07:07.081Z';
+  // The clock runs from the moment of the snapshot, so "last 7 days" keeps working.
+  const RealDate = Date;
+  const shift = RealDate.now() - RealDate.parse(AT);
+  window.Date = class Date extends RealDate {
+    constructor(...a) { if (a.length) super(...a); else super(RealDate.now() - shift); }
+    static now() { return RealDate.now() - shift; }
+  };
+  const now = () => new window.Date().toISOString();
+  const ago = (h) => new window.Date(window.Date.now() - h * 3600e3).toISOString();
+const CATEGORIES = {
+  shooting:      { label: 'Shooting / gun violence', icon: '🔫', color: '#c62828', community: true },
+  homicide:      { label: 'Homicide',                icon: '⚫', color: '#4a0000', community: false },
+  assault:       { label: 'Assault',                 icon: '👊', color: '#e65100', community: true },
+  robbery:       { label: 'Robbery',                 icon: '💰', color: '#ad1457', community: true },
+  burglary:      { label: 'Burglary / break-in',     icon: '🏚️', color: '#6a1b9a', community: true },
+  theft:         { label: 'Theft',                   icon: '👜', color: '#4527a0', community: true },
+  vehicle_theft: { label: 'Vehicle theft',           icon: '🚙', color: '#283593', community: true },
+  vandalism:     { label: 'Vandalism',               icon: '🧱', color: '#5d4037', community: true },
+  weapons:       { label: 'Weapons violation',       icon: '⚠️', color: '#bf360c', community: false },
+  drugs:         { label: 'Drugs',                   icon: '💊', color: '#00695c', community: false },
+  crash:         { label: 'Crash / accident',        icon: '🚗', color: '#1565c0', community: true },
+  road:          { label: 'Road closure / hazard',   icon: '🚧', color: '#f9a825', community: true },
+  fire:          { label: 'Fire',                    icon: '🔥', color: '#ff6f00', community: true },
+  other:         { label: 'Other',                   icon: '📍', color: '#546e7a', community: true },
+};
+
+function miles(a, b) {
+  const r = Math.PI / 180;
+  const h = Math.sin(((b.lat - a.lat) * r) / 2) ** 2
+    + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(((b.lng - a.lng) * r) / 2) ** 2;
+  return 7917.6 * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+const CITIES = {
+  milwaukee: [43.0389, -87.9065, 8], madison: [43.0731, -89.4012, 7], 'green bay': [44.5133, -88.0133, 6],
+  kenosha: [42.5847, -87.8212, 5], racine: [42.7261, -87.7829, 5], appleton: [44.2619, -88.4154, 5], wausau: [44.9591, -89.6301, 5],
+};
+const WORDS = {
+  shooting: /shoot|gunfire|shots/, homicide: /homicide|murder/, assault: /assault|batter|fight/, robbery: /robb|mugg/,
+  burglary: /burglar|home break/, vehicle_theft: /car theft|stolen car|stolen vehicle|vehicle theft|auto theft|carjack/,
+  theft: /theft|stol|steal|break-?in|shoplift/, vandalism: /vandal|graffiti|damage/, weapons: /weapon/, drugs: /drug/,
+  crash: /crash|accident|collision/, road: /road|closure/, fire: /\bfires?\b|arson/,
+};
+
+function keywordFilters(q) {
+  const t = q.toLowerCase();
+  let categories = Object.entries(WORDS).filter(([, re]) => re.test(t)).map(([k]) => k);
+  if (categories.includes('vehicle_theft') && !/break-?in|shoplift/.test(t)) categories = categories.filter((c) => c !== 'theft');
+  const n = /(?:last|past)\s+(\d{1,2})\s+(day|week|month)/.exec(t);
+  const days = n ? Number(n[1]) * { day: 1, week: 7, month: 30 }[n[2]] : /today|24 ?h/.test(t) ? 1 : /week/.test(t) ? 7 : 30;
+  return { categories, days, city: Object.keys(CITIES).find((c) => t.includes(c)) || '', nearSavedPlace: /\bnear\b|\bhome\b|\bwork\b|\bschool\b/.test(t) };
+}
+
+function ruleLabels(text) {
+  const out = [];
+  const contact = /(?:\+?1[-. ]?)?\(?\b\d{3}\)?[-. ]\d{3}[-. ]\d{4}\b|[\w.+-]+@[\w-]+\.\w+/;
+  const plate = /\b(?:plate|license)\b.{0,20}\b(?=[A-Z0-9 -]*\d)[A-Z0-9]{2,4}[- ]?[A-Z0-9]{3,4}\b/;
+  if (contact.test(text) || plate.test(text)) out.push('personal_info');
+  if (/https?:\/\/|www\.|(.)\1{9,}|buy now|free money|crypto giveaway/i.test(text)) out.push('spam');
+  return out;
+}
+
+
+
+  // ---- everything a demo user does stays in this browser
+  const KEY = 'bw_demo_state';
+  const fresh = () => ({ next: 1, reports: [], removed: [], votes: {}, follows: [], places: [], updates: {}, notes: [], zip: '', active: [],
+    prefs: { mode: 'both', categories: null, includeUnconfirmed: false, quietStart: null, quietEnd: null, digestHour: 8 } });
+  let st = fresh();
+  try { st = { ...st, ...JSON.parse(localStorage.getItem(KEY) || '{}') }; } catch { /* storage off: memory only */ }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(st)); } catch { /* memory only */ } };
+  const ME = 1;
+  const PEOPLE = { 2: ['Sam (demo)', 12], 3: ['Riley (demo)', 4] };
+  const me = () => ({ id: ME, displayName: 'Demo user', email: 'demo user, no real account', phone: 'demo', phoneVerified: true, homeZip: st.zip, isAdmin: false,
+    trustScore: 3, badges: ['verified_phone', ...(st.zip ? ['local_resident'] : [])], memberSince: AT });
+  const SAMPLES = [
+    { id: 901, by: 2, category: 'theft', lat: 43.041, lng: -87.909, h: 5, confirms: 1, disputes: 0, details: '[Demo] Invented report: bike taken from a rack downtown.' },
+    { id: 902, by: 3, category: 'road', lat: 43.075, lng: -89.387, h: 9, confirms: 1, disputes: 0, details: '[Demo] Invented report: large pothole in the right lane.' },
+    { id: 903, by: 3, category: 'other', lat: 43.06, lng: -87.95, h: 20, confirms: 0, disputes: 2, details: '[Demo] Invented report that others doubt. Your vote can hide it.' },
+  ];
+  function community() {
+    const all = [
+      ...SAMPLES.map((s) => ({ ...s, at: new RealDate(RealDate.parse(AT) - s.h * 3600e3).toISOString() })),
+      ...st.reports.map((r) => ({ ...r, by: ME, confirms: 0, disputes: 0 })),
+    ];
+    return all.filter((r) => !st.removed.includes(r.id)).map((r) => {
+      const v = st.votes[r.id] || 0;
+      const confirms = r.confirms + (v === 1);
+      const disputes = r.disputes + (v === -1);
+      const [name, trust] = r.by === ME ? ['Demo user', 3] : PEOPLE[r.by];
+      const hidden = disputes >= 3 && disputes > confirms;
+      return {
+        id: `community:${r.id}`, reportId: r.id, source: 'community', category: r.category, title: `${CATEGORIES[r.category].label} (demo)`, details: r.details,
+        lat: Math.round(r.lat * 1000) / 1000, lng: Math.round(r.lng * 1000) / 1000, occurredAt: r.at, publishedAt: r.at,
+        reporter: { id: r.by, displayName: name, trustScore: trust }, confirms, disputes, myVote: v, isMine: r.by === ME, merged: 0, photos: [],
+        verification: r.held ? 'held' : hidden ? 'hidden' : confirms >= 2 || trust >= 10 ? 'confirmed' : 'unconfirmed',
+      };
+    }).filter((r) => r.isMine || r.verification !== 'hidden');
+  }
+
+  const realFetch = window.fetch.bind(window);
+  let snap;
+  const official = () => (snap ??= realFetch('snapshot.json').then((r) => {
+    if (!r.ok) throw new Error('The snapshot could not be loaded.');
+    return r.json();
+  }).then((d) => d.incidents));
+  const everything = async () => [...community(), ...await official()];
+  class Refuse extends Error { constructor(m, status = 400) { super(m); this.status = status; } }
+  const signedIn = () => { try { return Boolean(localStorage.getItem('bw_token')); } catch { return false; } };
+  const need = () => { if (!signedIn()) throw new Refuse('Please sign in first.', 401); };
+  const inWi = (a, b) => a >= 42.49 && a <= 47.31 && b >= -92.89 && b <= -86.25;
+  const good = { last_ok: AT, last_error: null };
+
+  async function near(days) {
+    const since = ago(days * 24);
+    const hits = (await everything()).filter((i) => i.occurredAt >= since && st.places.some((p) => miles(p, i) <= p.radius_mi + (i.precisionM || 0) / 1609));
+    const c = {};
+    for (const i of hits) c[i.category] = (c[i.category] || 0) + 1;
+    return { n: hits.length, text: Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${CATEGORIES[k].label}: ${n}`).join(', ') };
+  }
+
+  async function ask(question) {
+    const f = keywordFilters(question);
+    const mine = f.nearSavedPlace && !f.city;
+    if (mine && !(signedIn() && st.places.length)) return { answer: 'Save a place first (🔔 Alerts), then ask about what’s near it.', filters: null, count: 0 };
+    const days = Math.min(90, Math.max(1, f.days || 30));
+    const since = ago(days * 24);
+    const hits = (await everything()).filter((i) => i.occurredAt >= since
+      && (!f.categories.length || f.categories.includes(i.category))
+      && (!f.city || miles({ lat: CITIES[f.city][0], lng: CITIES[f.city][1] }, i) <= CITIES[f.city][2])
+      && (!mine || st.places.some((p) => miles(p, i) <= p.radius_mi + (i.precisionM || 0) / 1609)));
+    const what = f.categories.length ? f.categories.map((c) => CATEGORIES[c].label.toLowerCase()).join(' or ') : 'any type';
+    const where = f.city ? ` around ${f.city.replace(/\b\w/g, (c) => c.toUpperCase())}` : mine ? ' near your saved places' : ' on the map';
+    return {
+      answer: `${hits.length} (${what})${where} in the ${days} day${days === 1 ? '' : 's'} before the snapshot. Some sources publish late or don’t cover every area.`,
+      count: hits.length, usedAi: false, filters: { days, ids: hits.map((h) => h.id) },
+    };
+  }
+
+  const routes = [
+    ['GET', /^\/incidents/, async () => ({ days: 90, generatedAt: AT, incidents: await everything() })],
+    ['GET', /^\/status$/, () => ({ sources: { 'mke-crash': good, 'madison-pd': good, 'uw-pd': good, 'mke-crime': { last_ok: null, last_error: 'unavailable' } }, wi511Enabled: false, aiEnabled: false, coverage: {} })],
+    ['POST', /^\/ask$/, (b) => ask(String(b.question || ''))],
+    ['GET', /^\/me$/, () => { need(); return { user: me() }; }],
+    ['PATCH', /^\/me$/, (b) => {
+      need();
+      if (b.homeZip && !/^\d{5}$/.test(b.homeZip)) throw new Refuse('Enter a 5-digit ZIP.');
+      st.zip = b.homeZip || ''; save();
+      return { user: me() };
+    }],
+    ['GET', /^\/users\/(\d+)$/, (b, [id]) => {
+      if (Number(id) === ME) return { user: { ...me(), reports: st.reports.length } };
+      const p = PEOPLE[id];
+      if (!p) throw new Refuse('User not found.', 404);
+      return { user: { id: Number(id), displayName: p[0], trustScore: p[1], badges: p[1] >= 10 ? ['verified_phone', 'trusted_reporter'] : ['verified_phone'], memberSince: AT, reports: SAMPLES.filter((s) => s.by === Number(id)).length } };
+    }],
+    ['POST', /^\/users\/\d+\/flag$/, () => { need(); return { ok: true }; }],
+    ['POST', /^\/reports$/, (b) => {
+      need();
+      const details = String(b.description || '').trim();
+      const when = new window.Date(b.occurredAt || now());
+      if (details.length < 10 || details.length > 500) throw new Refuse('Describe what happened in 10–500 characters.');
+      if (!inWi(b.lat, b.lng)) throw new Refuse('The location must be in Wisconsin.');
+      if (when > window.Date.now() + 3e5) throw new Refuse('The time can’t be in the future.');
+      if (when < window.Date.now() - 7 * 864e5) throw new Refuse('Reports must be about the last 7 days.');
+      if (st.reports.length >= 20) throw new Refuse('Demo limit reached. Use “Reset demo” above.');
+      const id = 1000 + st.next++;
+      const held = ruleLabels(details).length > 0;
+      st.reports.push({ id, category: b.category, details, lat: b.lat, lng: b.lng, at: when.toISOString(), held });
+      save();
+      return { id, held };
+    }],
+    ['DELETE', /^\/reports\/(\d+)$/, (b, [id]) => { need(); st.reports = st.reports.filter((r) => r.id !== Number(id)); save(); return { ok: true }; }],
+    ['POST', /^\/reports\/(\d+)\/vote$/, (b, [id]) => {
+      need();
+      if (st.reports.some((r) => r.id === Number(id))) throw new Refuse('You can’t vote on your own report.');
+      st.votes[id] = b.vote; save();
+      return { ok: true };
+    }],
+    ['GET', /^\/reports\/(\d+)\/updates$/, (b, [id]) => ({ updates: st.updates[id] || [] })],
+    ['POST', /^\/reports\/(\d+)\/updates$/, (b, [id]) => {
+      need();
+      const body = String(b.body || '').trim();
+      if (body.length < 5 || body.length > 300) throw new Refuse('Write 5–300 characters.');
+      if (ruleLabels(body).length) throw new Refuse('Leave out phone numbers, emails, plates and links.');
+      (st.updates[id] ??= []).push({ body, createdAt: now() }); save();
+      return { ok: true };
+    }],
+    ['GET', /^\/follows$/, () => { need(); return { ids: st.follows }; }],
+    ['POST', /^\/follows$/, (b) => {
+      need();
+      st.follows = st.follows.filter((i) => i !== b.incidentId);
+      if (b.follow !== false) st.follows.push(b.incidentId);
+      save();
+      return { ok: true };
+    }],
+    ['GET', /^\/alerts$/, () => { need(); return { places: st.places, vapidPublicKey: '', prefs: st.prefs, notifications: st.notes }; }],
+    ['PUT', /^\/alerts\/prefs$/, (b) => { need(); st.prefs = b; save(); return { ok: true }; }],
+    ['POST', /^\/notifications\/read$/, () => { need(); for (const n of st.notes) n.readAt ??= now(); save(); return { ok: true }; }],
+    ['GET', /^\/digest$/, async () => {
+      need();
+      const d = await near(7);
+      return { text: d.n ? `Near your places: ${d.text}.` : 'No newly published incidents near your saved places.' };
+    }],
+    ['POST', /^\/places$/, async (b) => {
+      need();
+      const label = String(b.label || '').trim().slice(0, 30);
+      if (!label) throw new Refuse('Name this place.');
+      if (!inWi(b.lat, b.lng)) throw new Refuse('The place must be in Wisconsin.');
+      if (st.places.length >= 5) throw new Refuse('You can save up to 5 places.');
+      st.places.push({ id: st.next++, label, lat: b.lat, lng: b.lng, radius_mi: b.radiusMi || 1 });
+      const d = await near(7);
+      if (d.n) st.notes.unshift({ id: st.next++, title: `${d.n} in the last 7 days near your places`, body: d.text, incidentId: null, createdAt: now(), readAt: null });
+      save();
+      return { places: st.places };
+    }],
+    ['PATCH', /^\/places\/(\d+)$/, (b, [id]) => { need(); const p = st.places.find((x) => x.id === Number(id)); if (p) p.radius_mi = b.radiusMi; save(); return { places: st.places }; }],
+    ['DELETE', /^\/places\/(\d+)$/, (b, [id]) => { need(); st.places = st.places.filter((x) => x.id !== Number(id)); save(); return { places: st.places }; }],
+    ['GET', /^\/checkin$/, () => { need(); return { invites: [], contacts: [{ id: 2, name: 'Sam (demo)' }], active: st.active }; }],
+    ['POST', /^\/checkin$/, (b) => {
+      need();
+      st.active = [{ id: st.next++, status: 'active', dueAt: new window.Date(window.Date.now() + Number(b.minutes || 30) * 6e4).toISOString(), note: b.note || '' }]; save();
+      return { message: 'Started. This is a demo: nobody will be contacted.' };
+    }],
+    ['POST', /^\/checkin\/\d+\/safe$/, () => { need(); st.active = []; save(); return { message: 'Marked safe.' }; }],
+  ];
+
+  window.fetch = async (url, init = {}) => {
+    const full = String(url);
+    if (!full.startsWith('/api/')) return realFetch(url, init);
+    const json = (v, status = 200) => new Response(JSON.stringify(v), { status, headers: { 'Content-Type': 'application/json' } });
+    const path = full.slice(4);
+    const route = routes.find(([m, re]) => m === (init.method || 'GET') && re.test(path));
+    if (!route) return json({ error: 'Turned off in this demo.' }, 403);
+    try {
+      const body = typeof init.body === 'string' ? JSON.parse(init.body) : {};
+      return json(await route[2](body, route[1].exec(path).slice(1)));
+    } catch (e) {
+      return json({ error: e.message }, e.status || 500);
+    }
+  };
+
+  window.demoUser = () => { try { localStorage.setItem('bw_token', 'demo'); } catch { /* memory only */ } return me(); };
+  addEventListener('DOMContentLoaded', () => {
+    const d = document.createElement('div');
+    d.className = 'demo-bar';
+    const day = new RealDate(AT).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'America/Chicago' });
+    d.innerHTML = `<a href="../">← Back</a> <span>Demo: public records saved ${day}, not live. What you add stays in this browser.</span> <button type="button">Reset demo</button>`;
+    d.querySelector('button').onclick = () => {
+      try { localStorage.removeItem(KEY); localStorage.removeItem('bw_token'); } catch { /* nothing stored */ }
+      location.reload();
+    };
+    document.body.prepend(d);
+  });
+})();
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SafeScribe</title>
+    <link rel="icon" href="data:," />
+    <script type="module" crossorigin src="./assets/index-659Dhpvu.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-EG3N--pp.css">
+    <meta name="description" content="SafeScribe demo: a replay of a scripted meeting, already redacted by the real privacy guard." />
+    <style>body{display:flex;flex-direction:column}
+#root{flex:1;min-height:0;height:auto!important}
+.demo-bar{padding:.5rem 1.25rem;background:#263142;font:15px/1.35 system-ui,sans-serif}
+.demo-bar p{margin:0 0 .4rem}
+.demo-bar a{text-decoration:underline;white-space:nowrap;margin-right:.75rem}
+.demo-bar form{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.demo-bar input{flex:1 1 16rem;min-width:0;min-height:44px;padding:.4rem .8rem;border:1px solid #9fb0c5;border-radius:8px;background:#0a0e14;color:#f2f5f9;font:inherit}
+.demo-bar button{min-height:44px;padding:.4rem 1rem;border-radius:8px;background:#3ddc97;color:#0a0e14;font:700 15px system-ui,sans-serif;cursor:pointer}
+.demo-bar .sample{background:none;color:#f2f5f9;border:1px solid #9fb0c5}
+.demo-bar output{color:#ffc04d}
+@media(max-width:1250px),(max-height:760px){
+  html,body{height:auto!important}
+  body{overflow:auto!important}
+  #root>div{height:auto!important}
+  #root>div>header,#root>div>div,#root section>header{flex-wrap:wrap}
+  #root>div>header p{margin-left:0!important}
+  #root main{grid-template-columns:minmax(0,1fr)!important;grid-template-rows:none!important}
+  #root main>section{height:26rem}
+  #root section>header>form{flex-basis:100%}
+  #root ol{grid-template-columns:repeat(auto-fit,minmax(9rem,1fr))!important}
+  #root .text-3xl{font-size:1.4rem!important}
+  #root .text-8xl{font-size:4rem!important}
+  #root .min-w-\[21rem\]{min-width:0!important}
+  #root [role=meter]{display:none}
+}
+@media(max-width:600px){
+  #root main .grid{grid-template-columns:minmax(0,1fr)!important}
+  #root .px-6{padding-left:1rem!important;padding-right:1rem!important}
+}
+</style>
+    <script>(() => {
+  'use strict';
+  // The replay was redacted by SafeScribe's real guard. Typed lines use the simplified guard below.
+  // Nothing is sent anywhere or stored.
+  const DATA = {"guard":"presidio","ai":"Basic mode (no AI)","events":[[0.36,{"type":"segment","id":1000001,"final":false,"parts":[]}],[0.61,{"type":"segment","id":1000001,"final":false,"parts":[]}],[0.88,{"type":"segment","id":1000001,"final":false,"parts":[]}],[1.14,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good "}]}],[1.39,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good morning "}]}],[1.66,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good morning everyone, "}]}],[1.91,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good morning everyone, let's "}]}],[2.16,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good morning everyone, let's get "}]}],[2.42,{"type":"segment","id":1000001,"final":false,"parts":[{"text":"Good morning everyone, let's get started "}]}],[2.7,{"type":"segment","id":1000001,"final":true,"parts":[{"text":"Good morning everyone, let's get started with the launch review."}]}],[4.01,{"type":"segment","id":1000002,"final":false,"parts":[]}],[4.28,{"type":"segment","id":1000002,"final":false,"parts":[]}],[4.53,{"type":"segment","id":1000002,"final":false,"parts":[]}],[4.81,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This "}]}],[5.08,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "}]}],[5.36,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"}]}],[5.62,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" "}]}],[5.89,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" from "}]}],[6.17,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" from finance, "}]}],[6.48,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" from finance, and "}]}],[6.76,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" from finance, and "},{"redacted":"PERSON"}]}],[7.03,{"type":"segment","id":1000002,"final":false,"parts":[{"text":"This is "},{"redacted":"PERSON"},{"text":" from finance, and "},{"redacted":"PERSON"},{"text":" "}]}],[7.28,{"type":"segment","id":1000002,"final":true,"parts":[{"text":"This is "},{"redacted":"PERSON_1"},{"text":" from finance, and "},{"redacted":"PERSON_2"},{"text":" is joining from marketing."}]}],[7.28,{"type":"blocked","count":2}],[8.55,{"type":"segment","id":1000003,"final":false,"parts":[]}],[8.83,{"type":"segment","id":1000003,"final":false,"parts":[]}],[9.08,{"type":"segment","id":1000003,"final":false,"parts":[]}],[9.34,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West "}]}],[9.64,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region "}]}],[9.89,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales "}]}],[10.14,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew "}]}],[10.41,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew by "}]}],[10.67,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew by "},{"redacted":"CHECKING"},{"text":" "}]}],[10.94,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew by "},{"redacted":"CHECKING"},{"text":" percent, "}]}],[11.22,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew by "},{"redacted":"CHECKING"},{"text":" percent, and "}]}],[11.48,{"type":"segment","id":1000003,"final":false,"parts":[{"text":"West region sales grew by "},{"redacted":"CHECKING"},{"text":" percent, and the "}]}],[11.73,{"type":"segment","id":1000003,"final":true,"parts":[{"text":"West region sales grew by twelve percent, and the travel budget is fine."}]}],[12.98,{"type":"segment","id":1000004,"final":false,"parts":[]}],[13.25,{"type":"segment","id":1000004,"final":false,"parts":[]}],[13.53,{"type":"segment","id":1000004,"final":false,"parts":[]}],[13.8,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", "}]}],[14.06,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can "}]}],[14.33,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can you "}]}],[14.61,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can you charge "}]}],[14.86,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can you charge the "}]}],[15.12,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can you charge the booth "}]}],[15.38,{"type":"segment","id":1000004,"final":false,"parts":[{"redacted":"PERSON"},{"text":", can you charge the booth deposit "}]}],[15.64,{"type":"segment","id":1000004,"final":true,"parts":[{"redacted":"PERSON_2"},{"text":", can you charge the booth deposit to the company card?"}]}],[15.64,{"type":"blocked","count":3}],[16.92,{"type":"segment","id":1000005,"final":false,"parts":[]}],[17.19,{"type":"segment","id":1000005,"final":false,"parts":[]}],[17.47,{"type":"segment","id":1000005,"final":false,"parts":[]}],[17.73,{"type":"segment","id":1000005,"final":false,"parts":[{"text":"Sure, "}]}],[17.98,{"type":"segment","id":1000005,"final":false,"parts":[{"text":"Sure, the "}]}],[18.25,{"type":"segment","id":1000005,"final":false,"parts":[{"text":"Sure, the card "}]}],[18.51,{"type":"segment","id":1000005,"final":false,"parts":[{"text":"Sure, the card number "}]}],[18.78,{"type":"segment","id":1000005,"final":false,"parts":[{"text":"Sure, the card number is "}]}],[19.03,{"type":"segment","id":1000005,"final":true,"parts":[{"text":"Sure, the card number is "},{"redacted":"CREDIT_CARD"},{"text":"."}]}],[19.03,{"type":"blocked","count":4}],[20.28,{"type":"segment","id":1000006,"final":false,"parts":[]}],[20.56,{"type":"segment","id":1000006,"final":false,"parts":[]}],[20.81,{"type":"segment","id":1000006,"final":false,"parts":[]}],[21.08,{"type":"segment","id":1000006,"final":false,"parts":[{"text":"Great, "}]}],[21.36,{"type":"segment","id":1000006,"final":false,"parts":[{"text":"Great, and "}]}],[21.61,{"type":"segment","id":1000006,"final":true,"parts":[{"text":"Great, and the admin password is"}]}],[22.89,{"type":"segment","id":1000007,"final":false,"parts":[]}],[23.14,{"type":"segment","id":1000007,"final":false,"parts":[]}],[23.41,{"type":"segment","id":1000007,"final":true,"parts":[{"redacted":"PASSWORD"},{"text":"."}]}],[23.41,{"type":"blocked","count":5}],[24.69,{"type":"segment","id":1000008,"final":false,"parts":[]}],[24.94,{"type":"segment","id":1000008,"final":false,"parts":[]}],[25.19,{"type":"segment","id":1000008,"final":false,"parts":[]}],[25.47,{"type":"segment","id":1000008,"final":false,"parts":[{"text":"We "}]}],[25.72,{"type":"segment","id":1000008,"final":false,"parts":[{"text":"We should "}]}],[25.98,{"type":"segment","id":1000008,"final":false,"parts":[{"text":"We should probably "}]}],[26.25,{"type":"segment","id":1000008,"final":false,"parts":[{"text":"We should probably not "}]}],[26.51,{"type":"segment","id":1000008,"final":true,"parts":[{"text":"We should probably not say that out loud."}]}],[27.8,{"type":"segment","id":1000009,"final":false,"parts":[]}],[28.06,{"type":"segment","id":1000009,"final":false,"parts":[]}],[28.34,{"type":"segment","id":1000009,"final":false,"parts":[]}],[28.59,{"type":"segment","id":1000009,"final":false,"parts":[{"text":"The "}]}],[28.88,{"type":"segment","id":1000009,"final":false,"parts":[{"text":"The staging "}]}],[29.16,{"type":"segment","id":1000009,"final":true,"parts":[{"text":"The staging API key is "},{"redacted":"API_KEY"},{"text":"."}]}],[29.16,{"type":"blocked","count":6}],[30.42,{"type":"segment","id":1000010,"final":false,"parts":[]}],[30.66,{"type":"segment","id":1000010,"final":false,"parts":[]}],[30.92,{"type":"segment","id":1000010,"final":false,"parts":[]}],[31.19,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[31.45,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[31.72,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[31.97,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[32.22,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[32.47,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[32.73,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[32.98,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[33.26,{"type":"segment","id":1000010,"final":false,"parts":[{"redacted":"API_KEY"}]}],[33.51,{"type":"segment","id":1000010,"final":true,"parts":[{"redacted":"PERSON_1"},{"text":", please send the contract to "},{"redacted":"EMAIL"},{"text":"."}]}],[33.51,{"type":"blocked","count":8}],[34.76,{"type":"segment","id":1000011,"final":false,"parts":[]}],[35.03,{"type":"segment","id":1000011,"final":false,"parts":[]}],[35.3,{"type":"segment","id":1000011,"final":false,"parts":[]}],[35.55,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[35.83,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[36.05,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[36.3,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[36.55,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[36.81,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[37.06,{"type":"segment","id":1000011,"final":false,"parts":[{"redacted":"EMAIL"}]}],[37.33,{"type":"segment","id":1000011,"final":true,"parts":[{"text":"Or call her on "},{"redacted":"PHONE_NUMBER"},{"text":" if she is in the office."}]}],[37.33,{"type":"blocked","count":9}],[38.59,{"type":"segment","id":1000012,"final":false,"parts":[]}],[38.84,{"type":"segment","id":1000012,"final":false,"parts":[]}],[39.11,{"type":"segment","id":1000012,"final":false,"parts":[]}],[39.38,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We "}]}],[39.66,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed "}]}],[39.94,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to "}]}],[40.2,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move "}]}],[40.5,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the "}]}],[40.81,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch "}]}],[41.03,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch of "}]}],[41.3,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch of "},{"redacted":"PROJECT"}]}],[41.56,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch of "},{"redacted":"PROJECT"},{"text":" "}]}],[41.81,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch of "},{"redacted":"PROJECT"},{"text":" to "}]}],[42.08,{"type":"segment","id":1000012,"final":false,"parts":[{"text":"We agreed to move the launch of "},{"redacted":"PROJECT"},{"text":" to the "}]}],[42.36,{"type":"segment","id":1000012,"final":true,"parts":[{"text":"We agreed to move the launch of Project "},{"redacted":"PROJECT"},{"text":" to the first week of May."}]}],[42.36,{"type":"blocked","count":10}],[43.59,{"type":"segment","id":1000013,"final":false,"parts":[]}],[43.84,{"type":"segment","id":1000013,"final":false,"parts":[]}],[44.09,{"type":"segment","id":1000013,"final":false,"parts":[]}],[44.42,{"type":"segment","id":1000013,"final":false,"parts":[{"redacted":"PERSON"},{"text":" "}]}],[44.67,{"type":"segment","id":1000013,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will "}]}],[44.94,{"type":"segment","id":1000013,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will update "}]}],[45.19,{"type":"segment","id":1000013,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will update the "}]}],[45.45,{"type":"segment","id":1000013,"final":true,"parts":[{"redacted":"PERSON_1"},{"text":" will update the revenue forecast by Friday."}]}],[45.45,{"type":"blocked","count":11}],[46.72,{"type":"segment","id":1000014,"final":false,"parts":[]}],[46.97,{"type":"segment","id":1000014,"final":false,"parts":[]}],[47.23,{"type":"segment","id":1000014,"final":false,"parts":[]}],[47.48,{"type":"segment","id":1000014,"final":false,"parts":[{"redacted":"PERSON"},{"text":" "}]}],[47.75,{"type":"segment","id":1000014,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will "}]}],[48.01,{"type":"segment","id":1000014,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will book "}]}],[48.26,{"type":"segment","id":1000014,"final":false,"parts":[{"redacted":"PERSON"},{"text":" will book the "}]}],[48.53,{"type":"segment","id":1000014,"final":true,"parts":[{"redacted":"PERSON_2"},{"text":" will book the conference room before Wednesday."}]}],[48.53,{"type":"blocked","count":12}],[49.8,{"type":"segment","id":1000015,"final":false,"parts":[]}],[50.06,{"type":"segment","id":1000015,"final":false,"parts":[]}],[50.34,{"type":"segment","id":1000015,"final":false,"parts":[]}],[50.59,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We "}]}],[50.84,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided "}]}],[51.11,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided to "}]}],[51.38,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided to raise "}]}],[51.69,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided to raise the "}]}],[51.98,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided to raise the marketing "}]}],[52.25,{"type":"segment","id":1000015,"final":false,"parts":[{"text":"We decided to raise the marketing budget "}]}],[52.5,{"type":"segment","id":1000015,"final":true,"parts":[{"text":"We decided to raise the marketing budget to forty thousand dollars."}]}],[53.76,{"type":"segment","id":1000016,"final":false,"parts":[]}],[54.08,{"type":"segment","id":1000016,"final":false,"parts":[]}],[54.36,{"type":"segment","id":1000016,"final":false,"parts":[]}],[54.64,{"type":"segment","id":1000016,"final":false,"parts":[{"text":"Deliver "}]}],[54.91,{"type":"segment","id":1000016,"final":false,"parts":[{"text":"Deliver the "}]}],[55.19,{"type":"segment","id":1000016,"final":false,"parts":[{"text":"Deliver the demo "}]}],[55.47,{"type":"segment","id":1000016,"final":false,"parts":[{"text":"Deliver the demo units "}]}],[55.72,{"type":"segment","id":1000016,"final":false,"parts":[{"text":"Deliver the demo units to "}]}],[55.98,{"type":"segment","id":1000016,"final":true,"parts":[{"text":"Deliver the demo units to "},{"redacted":"ADDRESS"},{"text":"."}]}],[55.98,{"type":"blocked","count":13}],[57.26,{"type":"segment","id":1000017,"final":false,"parts":[]}],[57.51,{"type":"segment","id":1000017,"final":false,"parts":[]}],[57.78,{"type":"segment","id":1000017,"final":false,"parts":[]}],[58.03,{"type":"segment","id":1000017,"final":false,"parts":[{"text":"For "}]}],[58.3,{"type":"segment","id":1000017,"final":false,"parts":[{"text":"For payroll, "}]}],[58.55,{"type":"segment","id":1000017,"final":false,"parts":[{"text":"For payroll, my "}]}],[58.8,{"type":"segment","id":1000017,"final":false,"parts":[{"text":"For payroll, my social "}]}],[59.08,{"type":"segment","id":1000017,"final":true,"parts":[{"text":"For payroll, my social security number is "},{"redacted":"SSN"},{"text":"."}]}],[59.08,{"type":"blocked","count":14}],[60.33,{"type":"segment","id":1000018,"final":false,"parts":[]}],[60.59,{"type":"segment","id":1000018,"final":false,"parts":[]}],[60.88,{"type":"segment","id":1000018,"final":false,"parts":[]}],[61.12,{"type":"segment","id":1000018,"final":false,"parts":[{"text":"Any "}]}],[61.41,{"type":"segment","id":1000018,"final":false,"parts":[{"text":"Any other "}]}],[61.67,{"type":"segment","id":1000018,"final":false,"parts":[{"text":"Any other questions "}]}],[61.95,{"type":"segment","id":1000018,"final":true,"parts":[{"text":"Any other questions before we wrap up?"}]}],[63.23,{"type":"segment","id":1000019,"final":false,"parts":[]}],[63.5,{"type":"segment","id":1000019,"final":false,"parts":[]}],[63.75,{"type":"segment","id":1000019,"final":false,"parts":[]}],[64.01,{"type":"segment","id":1000019,"final":false,"parts":[{"text":"No, "}]}],[64.26,{"type":"segment","id":1000019,"final":false,"parts":[{"text":"No, thanks "}]}],[64.53,{"type":"segment","id":1000019,"final":false,"parts":[{"text":"No, thanks everyone, "}]}],[64.8,{"type":"segment","id":1000019,"final":false,"parts":[{"text":"No, thanks everyone, that "}]}],[65.06,{"type":"segment","id":1000019,"final":true,"parts":[{"text":"No, thanks everyone, that was almost an email."}]}]],"autopsy":{"summary":[{"text":"Good morning everyone, let's get started with the launch review. This is "},{"redacted":"PERSON_1"},{"text":" from finance, and "},{"redacted":"PERSON_2"},{"text":" is joining from marketing. In all: 2 decisions and 2 action items."}],"decisions":[[{"text":"We agreed to move the launch of Project "},{"redacted":"PROJECT"},{"text":" to the first week of May."}],[{"text":"We decided to raise the marketing budget to forty thousand dollars."}]],"action_items":[{"task":[{"text":"Update the revenue forecast"}],"owner":[{"redacted":"PERSON_1"}],"due":[{"text":"Friday"}]},{"task":[{"text":"Book the conference room"}],"owner":[{"redacted":"PERSON_2"}],"due":[{"text":"Wednesday"}]}],"email_score":41,"verdict":[{"text":"Half meeting, half email. A memeeting."}],"source":"Basic mode (no AI)"},"asks":{"Which region sold the most?":{"question":[{"text":"Which region sold the most?"},{"text":" "}],"pending":false,"answer":[{"text":"West leads in revenue with $10.3 million; Central is lowest at $4.2 million."}],"source":"Basic mode (no AI)","sql":[{"text":"SELECT region, SUM(revenue) AS revenue FROM sales_view GROUP BY region ORDER BY revenue DESC"}],"chart":{"kind":"bar","rows":[{"label":"West","v0":10302570.0},{"label":"East","v0":6729485.0},{"label":"North","v0":6349755.0},{"label":"South","v0":5531820.0},{"label":"Central","v0":4241460.0}],"series":["revenue"],"money":true,"truncated":false}},"Monthly revenue trend in 2026":{"question":[{"text":"Monthly revenue trend in 2026"},{"text":" "}],"pending":false,"answer":[{"text":"Revenue went from $1.2 million in 2026-01 to $1.4 million in 2026-10, up 14%."}],"source":"Basic mode (no AI)","sql":[{"text":"SELECT month, SUM(revenue) AS revenue FROM sales_view WHERE substr(month, 1, 4) IN ('2026') GROUP BY month ORDER BY month"}],"chart":{"kind":"line","rows":[{"label":"2026-01","v0":1236760.0},{"label":"2026-02","v0":1328205.0},{"label":"2026-03","v0":1446655.0},{"label":"2026-04","v0":1606895.0},{"label":"2026-05","v0":1589525.0},{"label":"2026-06","v0":1662150.0},{"label":"2026-07","v0":1655705.0},{"label":"2026-08","v0":1557610.0},{"label":"2026-09","v0":1519015.0},{"label":"2026-10","v0":1414880.0}],"series":["revenue"],"money":true,"truncated":false}},"Expenses by category":{"question":[{"text":"Expenses by category"},{"text":" "}],"pending":false,"answer":[{"text":"Salaries leads in expenses with $14.0 million; Software is lowest at $1.7 million."}],"source":"Basic mode (no AI)","sql":[{"text":"SELECT category, SUM(amount) AS expenses FROM expenses_view GROUP BY category ORDER BY expenses DESC"}],"chart":{"kind":"bar","rows":[{"label":"Salaries","v0":13970346.05},{"label":"Marketing","v0":4323122.35},{"label":"Office","v0":2999693.25},{"label":"Travel","v0":1989752.64},{"label":"Software","v0":1655052.22}],"series":["expenses"],"money":true,"truncated":false}}}};
+  const LAST = DATA.events[DATA.events.length - 1][0] * 1000;
+// Simplified browser guard for the demo: pattern rules only, modelled on SafeScribe's detectors.py.
+// The real guard also uses Presidio and a language model, which find ordinary names.
+const guard = (() => {
+  const KEYW = '(?:api[\\s-]?(?:keys?|tokens?)|(?:access|secret|auth|bearer|private)[\\s-]?(?:tokens?|keys?)|tokens?)';
+  const PASS = '(?:pass\\s?(?:words?|codes?|phrases?)|pin(?:\\s(?:code|number))?|security code|cvv|cvc|access code|(?:wi-?\\s?fi|door|alarm|safe) code|secret word)';
+  const LINK = "(?:\\b(?:is|are|was|equals?|will be|should be)\\b|'s\\b|=|:|\\b(?:set|changed?|reset|updated?)(?:\\s+it)?\\s+to\\b)";
+  const END = '(?=[.!?]+(?:\\s|$)|$)';
+  const said = (w) => new RegExp(`\\b${w}\\b(?:\\s+(?:for|to|on|of)\\s+(?:[\\w'-]+\\s+){1,4}?)?\\s*${LINK}[\\s,.:;"'-]*(\\S.*?)${END}`, 'gid');
+  const direct = (w) => new RegExp(`\\b${w}\\b[\\s,:=]{1,3}(\\S*\\d\\S*)`, 'gid');
+  const changed = (w) => new RegExp(`\\b(?:chang|set|reset|updat)\\w*\\s+(?:(?:my|the|our)\\s+)?(?:\\w+\\s+)?${w}\\s+to\\s+(\\S.*?)${END}`, 'gid');
+  const STREET = '(?:street|st|avenue|ave|road|rd|boulevard|blvd|lane|ln|drive|dr|court|ct|place|pl|way|terrace|circle|parkway|highway|hwy)';
+  // Whole match, or group 1 when there is one.
+  const RULES = [
+    ...[said, direct, changed].map((f) => ['API_KEY', f(KEYW)]),
+    ...[said, direct, changed].map((f) => ['PASSWORD', f(PASS)]),
+    ['API_KEY', /\b(?:sk|pk|rk)[-_][\w-]{8,}|\bgh[pousr]_\w{16,}|\bgithub_pat_\w{16,}|\b(?:AKIA|ASIA)[A-Z0-9]{12,}|\bAIza[\w-]{20,}|\bxox[abprs]-[\w-]{8,}|\beyJ[\w-]{6,}\.[\w-]{6,}(?:\.[\w-]*)?|(?=[\w-]*\d)(?=[\w-]*[A-Za-z])[\w-]{20,}/gd],
+    ['EMAIL', /[\w.+-]+\s?@\s?[\w-]+(?:\.[\w-]+)*/gd],
+    ['EMAIL', /\b[\w+]+(?:(?:\s+(?:dot|underscore|dash|plus)\s+|[._-])[\w+]+)*\s+at\s+(?:[\w-]+(?:\s+dot\s+|\.)){1,3}(?:com|org|net|io|co|edu|gov|dev|ai)\b/gid],
+    ['ADDRESS', new RegExp(`\\b\\d[\\d,]{0,6}[A-Za-z]?\\s+(?:(?:north|south|east|west|[nsew]\\.?)\\s+)?(?:[\\w'.]+\\s+){1,3}?${STREET}\\b\\.?(?:,?\\s+(?:apartment|apt|suite|unit|#)\\.?\\s*\\w+)?`, 'gid')],
+    ['ADDRESS', /\bp\.?\s?o\.?\s+box\s+\d+/gid],
+    ['ADDRESS', /\b(?:home address|my address|address is|lives? at)\s+(?:is\s+|at\s+)?(.+?)(?=[.!?](?:\s|$)|$)/gid],
+    ['PERSON', /\b(?:[Mm]y name is|[Tt]his is|[Nn]ame's|[Ss]igned by)\s+([A-Z][\w'-]+(?:\s[A-Z][\w'-]+){0,2})/gd],
+    ['ID_NUMBER', /\b[A-Z]{1,3}[\s-]?\d{6,}\b/gd],
+    ['PROJECT', /\b(?:Project\s+)?(?:Bluebird|Nightfall|Kestrel)\b/gid],
+  ];
+  const WORD = { zero: 0, oh: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9 };
+  const ATOM = /\d+|\b(?:zero|oh|one|two|three|four|five|six|seven|eight|nine)\b/gi;
+  const AMOUNT = /[$€£]\s?\d[\d,]*(?:\.\d+)?|\b\d[\d,]*(?:\.\d+)?\s?(?:dollars|euros|percent|%|people|customers|users|orders|hours|days|weeks|months|years|minutes|thousand|million|billion)/gi;
+  const CONTEXT = [['CREDIT_CARD', /\b(?:card|visa|mastercard|amex)\b[^.!?]{0,30}$/i], ['SSN', /\b(?:social(?: security)?|ssn)\b[^.!?]{0,30}$/i],
+    ['BANK_ACCOUNT', /\b(?:account|routing|iban)\b[^.!?]{0,30}$/i], ['PASSWORD', /\b(?:pin|cvv|cvc|security code)\b[^.!?]{0,20}$/i]];
+
+  function numbers(text) {
+    const skip = [...text.matchAll(AMOUNT)].map((m) => [m.index, m.index + m[0].length]);
+    const runs = [];
+    for (const m of text.matchAll(ATOM)) {
+      if (skip.some(([a, b]) => m.index >= a && m.index < b)) continue;
+      const digits = /\d/.test(m[0]) ? m[0] : String(WORD[m[0].toLowerCase()]);
+      const last = runs[runs.length - 1];
+      if (last && /^[\s\-–.,()/+]{0,4}$/.test(text.slice(last.end, m.index))) {
+        last.end = m.index + m[0].length; last.digits += digits; last.groups.push(digits);
+      } else runs.push({ start: m.index, end: m.index + m[0].length, digits, groups: [digits] });
+    }
+    const out = [];
+    for (const r of runs) {
+      const n = r.digits.length;
+      const before = text.slice(Math.max(0, r.start - 70), r.start);
+      const ctx = CONTEXT.find(([, re]) => re.test(before))?.[0];
+      const years = r.groups.every((g) => /^(?:19|20)\d\d$/.test(g));
+      const label = n >= 13 && n <= 19 ? 'CREDIT_CARD' : ctx && n >= 3 ? ctx : years || n < 7 ? null
+        : r.groups.map((g) => g.length).join() === '3,2,4' ? 'SSN' : n === 7 || n === 10 || n === 11 ? 'PHONE_NUMBER' : 'ACCOUNT_NUMBER';
+      if (label) out.push([r.start, r.end, label]);
+    }
+    return out;
+  }
+
+  return (text) => {
+    const spans = numbers(text);
+    for (const [label, re] of RULES) {
+      for (const m of text.matchAll(re)) {
+        const [a, b] = m.indices[1] ?? m.indices[0];
+        spans.push([a, b, label]);
+      }
+    }
+    spans.sort((x, y) => x[0] - y[0] || y[1] - x[1]);
+    const parts = [];
+    let pos = 0;
+    let blocked = 0;
+    for (const [a, b, label] of spans) {
+      if (b <= pos) continue;
+      if (a < pos) { pos = b; continue; } // overlaps the previous block: extend it
+      if (a > pos) parts.push({ text: text.slice(pos, a) });
+      parts.push({ redacted: label });
+      blocked++;
+      pos = b;
+    }
+    if (pos < text.length) parts.push({ text: text.slice(pos) });
+    return { parts, blocked };
+  };
+})();
+
+  const asText = (parts) => parts.map((p) => p.text ?? `[${p.redacted}]`).join('');
+  const asParts = (s) => s.split(/(\[[A-Z_]+\])/).filter(Boolean).map((x) => (/^\[[A-Z_]+\]$/.test(x) ? { redacted: x.slice(1, -1) } : { text: x }));
+
+  /** SafeScribe's rule-based autopsy (used when no AI is reachable), on guarded text only. */
+  function autopsy(lines) {
+    const DECISION = /\b(?:we (?:have )?(?:decided|agreed|approved)|decision is|it's decided|we are going with|we're going with|let's go with)\b/i;
+    const ACTION = /(?:^|[,;]\s*|\band\s+)(\[PERSON\]|I|we|[A-Z][a-z]+)(?:'ll| will| needs? to| is going to| should| has to)\s+(?!(?:not|never|probably|maybe|be|have|see)\b)([^.;?!]{4,})/;
+    const DUE = /\b(?:by|before|on|until)\s+((?:next |this |end of |the end of )*(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|tomorrow|today|noon|day|week|month|quarter))|\b(tomorrow|next week|next month)\b/i;
+    const NOT = new Set(['It', 'That', 'This', 'There', 'What', 'Who', 'He', 'She', 'They', 'You', 'Revenue', 'Sales']);
+    const sentences = lines.flatMap((l) => l.split(/([.!?])\s+/).reduce((a, x, i) => { if (i % 2) a[a.length - 1] += x; else a.push(x); return a; }, []))
+      .map((s) => s.trim()).filter((s) => s.split(/\s+/).length > 2);
+    if (!sentences.length) return { summary: [{ text: 'Too little was said, so there is nothing to dissect.' }], decisions: [], action_items: [], email_score: 100, verdict: [{ text: 'Could have been a blank email.' }], source: 'Basic mode (no AI)' };
+    const decisions = sentences.filter((s) => DECISION.test(s));
+    const actions = [];
+    for (const s of sentences) {
+      const m = !decisions.includes(s) && !s.endsWith('?') && ACTION.exec(s);
+      if (!m || NOT.has(m[1])) continue;
+      const due = DUE.exec(s);
+      const task = (due ? m[2].replace(due[0], '') : m[2]).replace(/^[ ,]+|[ ,]+$/g, '');
+      actions.push({ task: asParts(task[0].toUpperCase() + task.slice(1)), owner: /^(?:I|we|We)$/.test(m[1]) ? null : asParts(m[1]), due: due ? [{ text: due[1] || due[2] }] : null });
+    }
+    const score = Math.max(5, Math.min(95, 95 - Math.min(decisions.length, 4) * 14 - Math.min(actions.length, 5) * 9 - sentences.filter((s) => s.endsWith('?')).length * 4));
+    const verdict = [[80, 'This meeting was an email wearing a trench coat.'], [60, 'A solid email with a side of small talk.'], [40, 'Half meeting, half email. A memeeting.'], [20, 'Mostly earned its calendar slot.'], [0, 'Real decisions happened. Your inbox is jealous.']].find(([n]) => score >= n)[1];
+    return {
+      summary: asParts(`${sentences.slice(0, 2).join(' ')} In all: ${decisions.length} decisions and ${actions.length} action items.`),
+      decisions: decisions.map(asParts), action_items: actions, email_score: score, verdict: [{ text: verdict }], source: 'Basic mode (no AI)',
+    };
+  }
+
+  let live = null;
+  window.WebSocket = class {
+    static OPEN = 1;
+    constructor() {
+      this.readyState = 0;
+      this.timers = [];
+      this.own = [];
+      this.blocked = 0;
+      this.next = 1;
+      this.s = {
+        mode: 'ptt', listening: false, stt: 'ready', error: null, guard: DATA.guard, ai: DATA.ai, ai_ready: false, phase: 'idle', elapsed: 0,
+        running: false, clears_in: null, demo: false, asking: false, voice: false, attendees: 6, hourly_rate: 85,
+      };
+      this.later(() => { this.readyState = 1; live = this; this.onopen?.(); this.push(); }, 50);
+    }
+    later(f, ms) { this.timers.push(setTimeout(f, ms)); }
+    stop() { this.timers.forEach(clearTimeout); this.timers = []; }
+    close() { this.stop(); this.readyState = 3; }
+    emit(e) { this.onmessage?.({ data: JSON.stringify(e) }); }
+    push(p) {
+      Object.assign(this.s, p);
+      if (this.s.running) this.s.elapsed = (performance.now() - this.t0) / 1000;
+      this.emit({ type: 'state', ...this.s });
+    }
+    clear() {
+      this.stop();
+      this.own = [];
+      this.blocked = 0;
+      this.emit({ type: 'cleared' });
+      this.emit({ type: 'blocked', count: 0 });
+      this.emit({ type: 'autopsy', result: null });
+      this.emit({ type: 'qa', result: null });
+      this.push({ phase: 'idle', elapsed: 0, running: false, clears_in: null, demo: false, asking: false });
+    }
+    begin(demo) {
+      this.clear();
+      this.t0 = performance.now();
+      this.push({ phase: 'live', running: true, demo });
+    }
+    play() {
+      this.begin(true);
+      for (const [t, e] of DATA.events) this.later(() => this.emit(e), t * 1000);
+      this.later(() => this.end(), LAST + 1200);
+    }
+    /** A visitor's own line. Only the guarded version is kept. */
+    say(raw) {
+      if (this.s.demo || this.s.phase === 'ending') return false;
+      if (this.s.phase !== 'live') this.begin(false);
+      const { parts, blocked } = guard(raw);
+      this.own.push(asText(parts));
+      this.blocked += blocked;
+      this.emit({ type: 'segment', id: 5000 + this.next++, final: true, parts });
+      this.emit({ type: 'blocked', count: this.blocked });
+      return true;
+    }
+    end() {
+      if (this.s.phase !== 'live') return;
+      const own = !this.s.demo;
+      this.stop();
+      this.push({ demo: false, phase: 'ending', asking: false });
+      // The recorded autopsy describes the whole replay, so ending it early skips to the end first.
+      if (!own) for (const [, e] of DATA.events) if (e.type === 'blocked' || e.final) this.emit(e);
+      this.later(() => {
+        this.push({ running: false, phase: 'ended', clears_in: 90 });
+        this.emit({ type: 'autopsy', result: own ? autopsy(this.own) : DATA.autopsy });
+        this.later(() => this.clear(), 90000);
+      }, 1200);
+    }
+    ask(q) {
+      this.push({ asking: true });
+      const other = { question: [], pending: false, answer: [{ text: 'This demo answers only its three examples. Press Clear to see them again.' }], source: 'Demo' };
+      this.later(() => {
+        this.emit({ type: 'qa', result: DATA.asks[q] ?? other });
+        this.push({ asking: false });
+      }, 700);
+    }
+    send(raw) {
+      const m = JSON.parse(raw);
+      if (m.type === 'demo') m.on ? this.play() : this.clear();
+      else if (m.type === 'end') this.end();
+      else if (m.type === 'clear') this.clear();
+      else if (m.type === 'ask') this.ask(m.text);
+      else if (m.type === 'set_mode') this.push({ mode: m.mode });
+      else if (m.type === 'settings') this.push({ attendees: m.attendees, hourly_rate: m.hourly_rate });
+    }
+  };
+  addEventListener('DOMContentLoaded', () => {
+    const d = document.createElement('div');
+    d.className = 'demo-bar';
+    d.innerHTML = `<p><a href="../">← Back</a> <span>Demo. Press <b>Run demo</b> for a replay redacted by the real guard, or try your own line with a <b>simplified</b> guard that misses most names. Please use made-up details. Nothing leaves this page.</span></p>
+      <form><input class="masked" maxlength="300" autocomplete="off" spellcheck="false" aria-label="Your own line, hidden until checked" placeholder="Type a line, e.g. My card number is 4111 1111 1111 1111" /><button>Say it</button><button type="button" class="sample">Use an example</button><output></output></form>`;
+    const form = d.querySelector('form');
+    const input = d.querySelector('input');
+    const out = d.querySelector('output');
+    const say = (text) => {
+      const t = text.trim();
+      input.value = '';
+      out.textContent = !t ? '' : live?.say(t) ? '' : 'Stop the replay first.';
+    };
+    form.onsubmit = (e) => { e.preventDefault(); say(input.value); };
+    const samples = ['My name is Jordan Avery and my email is jordan at example dot com.', 'The door code is 4471, and call me on 414-555-0132.', 'We agreed to ship Project Nightfall in May.', 'Priya will send the budget by Friday.', 'The staging API key is sk-demo-4f9a8b7c6d5e.'];
+    let i = 0;
+    d.querySelector('.sample').onclick = () => say(samples[i++ % samples.length]);
+    document.body.prepend(d);
+  });
+})();
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
