@@ -7,8 +7,8 @@
   // appears everywhere on the site. While it's empty, LinkedIn links stay hidden.
   // ------------------------------------------------------------------
   var LINKS = {
-    linkedin: "",
-    github: "https://github.com/a-husseini",
+    linkedin: "https://www.linkedin.com/in/amir-h-956033137",
+    github: "https://github.com/AmirHusseini",
   };
 
   document.querySelectorAll("[data-link]").forEach(function (link) {

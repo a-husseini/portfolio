@@ -137,3 +137,14 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Small phones: long job titles get the full width, dates go below. */
+@media (max-width: 420px) {
+  .row-list:not(.language-list) .row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .row-list:not(.language-list) .row-place {
+    grid-row: auto;
+  }
+}

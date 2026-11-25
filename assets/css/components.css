@@ -195,6 +195,7 @@
 }
 
 .theme-toggle {
+  flex: none;
   display: grid;
   place-items: center;
   width: 40px;
@@ -349,6 +350,31 @@
   .site-nav,
   .site-nav ul {
     gap: var(--space-4);
+  }
+
+  /* Easier to tap, without making the header taller. */
+  .site-nav a {
+    display: inline-block;
+    padding-block: 10px;
+    margin-block: -10px;
+  }
+}
+
+/* Smallest phones */
+@media (max-width: 380px) {
+  .site-nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--space-2);
+  }
+
+  .site-nav ul {
+    gap: var(--space-2);
+  }
+
+  .site-nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0;
   }
 }
 
